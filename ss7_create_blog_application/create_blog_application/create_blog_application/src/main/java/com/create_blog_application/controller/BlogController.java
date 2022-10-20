@@ -26,28 +26,28 @@ public class BlogController {
     }
 
     @PostMapping("/create-blog")
-    public ModelAndView saveCustomer(@ModelAttribute("blog") Blog blog) {
+    public ModelAndView saveBlog(@ModelAttribute("blog") Blog blog) {
         blogService.save(blog);
-        ModelAndView modelAndView = new ModelAndView("/customer/create");
+        ModelAndView modelAndView = new ModelAndView("/blog/create");
         modelAndView.addObject("blog", new Blog());
         modelAndView.addObject("message", "New blog created successfully");
         return modelAndView;
     }
 
     @GetMapping("/blogs")
-    public ModelAndView listCustomers() {
+    public ModelAndView listBlogs() {
         ModelAndView modelAndView = new ModelAndView("/blog/list");
-        modelAndView.addObject("customers", blogService.findAll());
+        modelAndView.addObject("blogs", blogService.findAll());
         return modelAndView;
 
     }
 
     @GetMapping("/edit-blog/{id}")
     public ModelAndView showEditForm(@PathVariable Long id) {
-        Optional<Blog> customer = blogService.findById(id);
-        if (customer.isPresent()) {
+        Optional<Blog> blog = blogService.findById(id);
+        if (blog.isPresent()) {
             ModelAndView modelAndView = new ModelAndView("/blog/edit");
-            modelAndView.addObject("blog", customer.get());
+            modelAndView.addObject("blog", blog.get());
             return modelAndView;
         } else {
             return new ModelAndView("/error.404");
@@ -55,7 +55,7 @@ public class BlogController {
     }
 
     @PostMapping("/edit-blog")
-    public ModelAndView updateCustomer(@ModelAttribute("blog") Blog blog) {
+    public ModelAndView updateBlog(@ModelAttribute("blog") Blog blog) {
         blogService.save(blog);
         ModelAndView modelAndView = new ModelAndView("/blog/edit");
         modelAndView.addObject("blog", blog);
@@ -77,9 +77,9 @@ public class BlogController {
     }
 
     @PostMapping("/delete-blog")
-    public String deleteCustomer(@ModelAttribute("blog") Blog blog) {
+    public String deleteBlog(@ModelAttribute("blog") Blog blog) {
         blogService.remove(Long.valueOf(blog.getId()));
-        return "redirect:customers";
+        return "redirect:blogs";
     }
 
     @GetMapping("/search")
