@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/create-blog">Create new customer</a>
+<a href="/create-blog">Create new blog</a>
 
 <form th:action="@{/search}" method="get">
     <input  th:type="text" name="keyword">
@@ -26,8 +26,8 @@
             <td th:text="${blog.author}"></td>
             <td th:text="${blog.price}"></td>
             <td th:text="${blog.status}"></td>
-            <td><a th:href="@{/edit-customer/__${customer.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete-customer/__${customer.id}__ }">Delete</a></td>
+            <td><a th:href="@{/edit-blog/__${blog.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-blog/__${blog.id}__ }">Delete</a></td>
         </tr>
     </th:block>
 </table>
