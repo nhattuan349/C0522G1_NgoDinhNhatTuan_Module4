@@ -78,7 +78,7 @@ public class BlogController {
 
     @PostMapping("/delete-blog")
     public String deleteBlog(@ModelAttribute("blog") Blog blog) {
-        blogService.remove(Long.valueOf(blog.getId()));
+        blogService.remove(blog.getId());
         return "redirect:blogs";
     }
 
