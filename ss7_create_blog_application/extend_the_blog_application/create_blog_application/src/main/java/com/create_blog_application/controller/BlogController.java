@@ -5,6 +5,7 @@ import com.create_blog_application.model.Blog;
 import com.create_blog_application.service.IBlogService;
 import com.create_blog_application.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -14,8 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
-
 @Controller
+@RequestMapping("")
 public class BlogController {
 
     @Autowired
@@ -57,6 +58,17 @@ public class BlogController {
 
     }
 
+//    @GetMapping("/")
+//    public String showList(@PageableDefault(value = 2) Pageable pageable,
+//                           @RequestParam(defaultValue = "") String name, Model model){
+//        Page<Blog> blogs= blogService.findByName(pageable , name) ;
+//        model.addAttribute("names" , name);
+//        model.addAttribute("blogs",blogs);
+//        return "blog/list";
+//    }
+
+
+
     @GetMapping("/edit-blog/{id}")
     public ModelAndView showEditForm(@PathVariable int id) {
         Optional<Blog> blog = blogService.findById(id);
@@ -97,10 +109,17 @@ public class BlogController {
         return "redirect:blogs";
     }
 
+//    @GetMapping("/search")
+//    public String seachName(@RequestParam String keyword, Model model) {
+//        model.addAttribute("blogs",blogService.findByName(keyword));
+//        return "blog/list";
+//    }
+
     @GetMapping("/search")
-    public String seachName(@RequestParam String keyword, Model model) {
-        model.addAttribute("blogs",blogService.findByName(keyword));
+    public String seachName(@PageableDefault Pageable pageable,
+                            @RequestParam String keyword, Model model) {
+
+        model.addAttribute("blogs",blogService.findByName(pageable, keyword));
         return "blog/list";
     }
-
 }

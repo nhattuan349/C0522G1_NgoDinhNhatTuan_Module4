@@ -12,4 +12,5 @@ public interface IBlogService extends IGeneralService<Blog> {
 
     List<Blog> findByName(String keyword);
 
+    Page<Blog> findByName(Pageable pageable, String keyword );
 }

@@ -46,4 +46,9 @@ public class BlogService implements IBlogService {
     public List<Blog> findByName(String keyword) {
         return blogRepository.searchByName("%"+keyword+"%");
     }
+
+    @Override
+    public Page<Blog> findByName(Pageable pageable, String keyword) {
+        return blogRepository.findByBlogNameContaining(pageable,"%"+ keyword+"%");
+    }
 }
