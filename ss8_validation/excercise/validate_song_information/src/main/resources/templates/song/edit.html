@@ -16,25 +16,35 @@
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>firstName:</td>
+            <td>name:</td>
             <td><input type="text" th:field="*{name}"/></td>
+            <td style="color: red"
+                th:if="${#fields.hasErrors('name')}"
+                th:errors="*{name}">Name Error</td>
         </tr>
         <tr>
-            <td>lastName:</td>
+            <td>performing:</td>
             <td><input type="text" th:field="*{performing}"/></td>
+            <td style="color: red"
+                th:if="${#fields.hasErrors('performing')}"
+                th:errors="*{performing}">performing Error</td>
         </tr>
         <tr>
-            <td>phoneNumber:</td>
+            <td>lyrics:</td>
             <td><input type="text" th:field="*{lyrics}"/></td>
         </tr>
         <tr>
-            <td>age:</td>
+            <td>songType:</td>
             <td><input type="text" th:field="*{songType}"/></td>
+            <td style="color: red"
+                th:if="${#fields.hasErrors('songType')}"
+                th:errors="*{songType}">email Error</td>
         </tr>
         <tr>
-            <td>email:</td>
+            <td>author:</td>
             <td><input type="text" th:field="*{author}"/></td>
         </tr>
+
         <tr>
             <td></td>
             <td><input type="submit" value="Update theSong"></td>

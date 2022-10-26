@@ -12,7 +12,7 @@
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form th:action="@{/create-song}" th:object="${theSongDto}" method="post">
+<form th:action="@{/create}" th:object="${theSongDto}" method="post">
     <table>
         <tr>
             <td>name:</td>

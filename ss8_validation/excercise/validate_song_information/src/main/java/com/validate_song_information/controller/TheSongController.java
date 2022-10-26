@@ -31,7 +31,7 @@ public class TheSongController {
         return modelAndView;
     }
 
-    @PostMapping("/create-song")
+    @PostMapping("/create")
     public String saveTheSong(@Validated @ModelAttribute TheSongDto theSongDto,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
@@ -66,21 +66,38 @@ public class TheSongController {
         Optional<TheSong> theSong = theSongService.findById(id);
         if (theSong.isPresent()) {
             ModelAndView modelAndView = new ModelAndView("/song/edit");
-            modelAndView.addObject("theSong", theSong.get());
+            modelAndView.addObject("theSongDto", theSong.get());
             return modelAndView;
         } else {
             return new ModelAndView("/error.404");
         }
     }
 
-    @PostMapping("/edit-song")
-    public ModelAndView updateTheSong(@ModelAttribute("theSong") TheSong theSong) {
-        theSongService.save(theSong);
-        ModelAndView modelAndView = new ModelAndView("/song/edit");
-        modelAndView.addObject("theSong", theSong);
-        modelAndView.addObject("message", "TheSong updated successfully");
-        return modelAndView;
+    public String edit(@Validated @ModelAttribute("theSongDto") TheSongDto theSongDto,
+                       BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes,
+                       Model model){
+        new TheSongDto().validate(theSongDto,bindingResult);
+        if (bindingResult.hasFieldErrors()){
+            return"/song/edit";
+        }else{
+            TheSong theSong = new TheSong();
+            BeanUtils.copyProperties(theSongDto,theSong);
+            model.addAttribute("theSong",theSong);
+            theSongService.save(theSong);
+            redirectAttributes.addFlashAttribute("message", "Edit new theSong successfully!");
+            return "redirect:/songs";
+        }
     }
+
+//    @PostMapping("/edit-song")
+//    public ModelAndView updateTheSong(@ModelAttribute("theSong") TheSong theSong) {
+//        theSongService.save(theSong);
+//        ModelAndView modelAndView = new ModelAndView("/song/edit");
+//        modelAndView.addObject("theSong", theSong);
+//        modelAndView.addObject("message", "TheSong updated successfully");
+//        return modelAndView;
+//    }
 
     @GetMapping("/delete-song/{id}")
     public ModelAndView showDeleteForm(@PathVariable int id) {
