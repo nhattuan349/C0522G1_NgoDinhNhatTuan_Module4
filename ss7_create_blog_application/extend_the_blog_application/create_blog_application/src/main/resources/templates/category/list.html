@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/category/create-category">Create new category</a>
+<p>
+    <a href="/blogs">Blog list</a>
+</p>
+<form th:action="@{/search}" method="get">
+    <input  th:type="text" name="keyword">
+    <input  th:type="submit" name="action" value="findByName">
+</form>
+
+<h1>Categorys</h1>
+<table border="1">
+    <tr>
+        <th>name</th>
+
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="category : ${categorys}">
+        <tr>
+            <td th:text="${category.name}"></td>
+
+            <td><a th:href="@{/category/edit-category/__${category.id}__ }">Edit</a></td>
+            <td><a th:href="@{/category/delete-category/__${category.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+
+<div>
+    <a th:href="@{'/categorys'(page=${categorys.number - 1})}"
+       th:if="${categorys.hasPrevious()}">Previous</a>
+
+    <span th:text="${categorys.number + 1}"></span>
+    <span th:text="${categorys.totalPages}"></span>
+
+    <a th:href="@{'/categorys'(page = ${categorys.number + 1})}"
+       th:if="${categorys.hasNext()}">Next</a>
+</div>
+</body>
+</html>

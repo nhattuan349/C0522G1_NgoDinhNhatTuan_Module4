@@ -4,6 +4,8 @@ import com.create_blog_application.model.Category;
 import com.create_blog_application.repository.ICategoryRepository;
 import com.create_blog_application.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -12,6 +14,17 @@ public class CategoryService implements ICategoryService {
 
     @Autowired
     private ICategoryRepository categoryRepository;
+
+
+    @Override
+    public Page<Category> findAll(Pageable pageable) {
+        return categoryRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Category> findByName(Pageable pageable, String name) {
+        return categoryRepository.findByBlogNameContaining(pageable, name);
+    }
 
     @Override
     public Iterable<Category> findAll() {
