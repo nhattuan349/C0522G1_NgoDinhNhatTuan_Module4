@@ -8,9 +8,9 @@
 <h1>Delete blog</h1>
 <h2>Are you sure?</h2>
 <p>
-    <a href="/blogs">Blog list</a>
+    <a href="/blog/blogs">Blog list</a>
 </p>
-<form th:action="@{/delete-blog}" th:object="${blog}" method="post">
+<form th:action="@{/blog/delete-blog}" th:object="${blog}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>

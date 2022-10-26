@@ -13,6 +13,7 @@ import java.util.Optional;
 
 
 @Controller
+@RequestMapping("/blog")
 public class BlogController {
 
     @Autowired
