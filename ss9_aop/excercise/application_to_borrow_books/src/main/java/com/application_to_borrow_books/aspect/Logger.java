@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class Logger {
-    @AfterThrowing(value = "execution(* app.application_book.controller.BookController.oder(..))")
+    @AfterThrowing(value = "execution(* com.application_to_borrow_books.controller.BookController.oder(..))")
     public void checkEx(){
         System.out.println("----------------");
         System.out.println("ERROR");
     }
 
-    @After(value = "execution(* app.application_book.controller.BookController.oder(..))")
+    @After(value = "execution(* com.application_to_borrow_books.controller.BookController.oder(..))")
     public void checkOk(){
         System.out.println("----------------");
         System.out.println("OK");

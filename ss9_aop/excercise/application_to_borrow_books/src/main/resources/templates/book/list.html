@@ -12,6 +12,16 @@
     <input  th:type="submit" name="action" value="findByName">
 </form>
 
+<div class="notify"style="color: red">
+    <div th:if="${mess}">
+        <span th:text="${mess}"></span>
+    </div>
+</div>
+<h1>Trả sách</h1>
+<form action="/update" method="post" >
+    <input type="text" name="pay">
+    <button type="submit">Pay</button>
+</form>
 <h1>books</h1>
 <table border="1">
     <tr>
