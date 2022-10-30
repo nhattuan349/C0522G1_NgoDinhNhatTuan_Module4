@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+          crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<p>
+  <a th:href="@{/back/{id}/(id=${product.id})}">Back List Product</a>
+</p>
+<div class="container">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img th:src="@{${product.image}}" class="img-fluid rounded-start" style="width: 300px; height: 300px">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${product.name}"></h5>
+          <p class="card-text" th:text="${product.description}"></p>
+          <b>Giá:</b><strong class="card-text" th:text="${product.price}"> </strong>
+          <p class="card-text"><small class="text-muted"> Last Updated 5 Mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

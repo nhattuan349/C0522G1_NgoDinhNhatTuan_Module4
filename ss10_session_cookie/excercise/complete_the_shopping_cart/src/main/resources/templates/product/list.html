@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product:${productList}">
+                    <td th:text="${product.name}"></td>
+                    <td>
+                        <a th:href="@{/detail/{id}(id=${product.id})}">
+                            <img th:src="@{${product.image}}" style="width: 70px; height: auto">
+                        </a>
+                    </td>
+                    <td th:text="${product.description}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td>
+                        <a class="btn btn-success" role="button" th:href="@{/add/{id}(id=${product.id})}"
+                           style="color: red;background-color: green">+</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4" th:if="${historyProduct}">
+            <div class="card sticky -top border-0">
+                <img th:src="${historyProduct.image}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card title" th:text="${historyProduct.name}"></h5>
+                    <b>Giá</b>
+                    <p class="card text" th:text="${historyProduct.price}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
