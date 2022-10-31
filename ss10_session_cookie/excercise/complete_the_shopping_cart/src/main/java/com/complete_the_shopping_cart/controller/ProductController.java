@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("cart")
+@SessionAttributes("cart")
 public class ProductController {
 
     @Autowired
