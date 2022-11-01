@@ -3,19 +3,21 @@ package com.restful_integration_for_blog_application.controller;
 import com.restful_integration_for_blog_application.dto.BlogDto;
 import com.restful_integration_for_blog_application.model.Blog;
 import com.restful_integration_for_blog_application.service.IBlogService;
-import com.restful_integration_for_blog_application.service.impl.BlogService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/api/blog/v1")
-public class BlogController {
+@RequestMapping("/api/rest/blog/v1")
+public class RestBlogController {
+
 
     @Autowired
     private IBlogService blogService;
@@ -31,11 +33,11 @@ public class BlogController {
     }
 
     @PostMapping
-    public ResponseEntity<Blog> save(@RequestBody BlogDto blogDto) {
-        Blog blog = new Blog();
-        BeanUtils.copyProperties(blogDto, blog);
-        blogService.save(blog);
-        return new ResponseEntity<>(HttpStatus.OK);
+        public ResponseEntity<Blog> save(@RequestBody BlogDto blogDto) {
+            Blog blog = new Blog();
+            BeanUtils.copyProperties(blogDto, blog);
+            blogService.save(blog);
+            return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
@@ -58,4 +60,8 @@ public class BlogController {
         return new ResponseEntity<Blog>(blogService.save(blog), HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Blog>> seachName(@RequestParam String keyword) {
+        return new ResponseEntity<>(blogService.findByName(keyword),HttpStatus.OK);
+    }
 }

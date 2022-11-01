@@ -1,22 +1,23 @@
 package com.restful_integration_for_blog_application.controller;
 
-import com.restful_integration_for_blog_application.dto.BlogDto;
 import com.restful_integration_for_blog_application.dto.CategoryDto;
-import com.restful_integration_for_blog_application.model.Blog;
 import com.restful_integration_for_blog_application.model.Category;
 import com.restful_integration_for_blog_application.service.ICategoryService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/api/category/v1")
-public class CategoryController {
+@RequestMapping("/api/rest/category/v1")
+
+public class RestBlogCategoryController {
 
     @Autowired
     private ICategoryService categoryService;

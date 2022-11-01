@@ -1,26 +1,20 @@
-package com.restful_integration_for_blog_application.model;
+package com.restful_integration_for_blog_application.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-
-@Entity
-public class Blog {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BlogDto {
     private Integer id;
     private String author;
     private Integer price;
     private String status ;
 
 
-    @ManyToOne
+    public BlogDto() {
+    }
 
-    @JoinColumn(name = "category_id",referencedColumnName = "id")
-    private Category category;
-
-    public Blog() {
+    public BlogDto(Integer id, String author, Integer price, String status) {
+        this.id = id;
+        this.author = author;
+        this.price = price;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -53,13 +47,5 @@ public class Blog {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }
