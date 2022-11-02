@@ -5,9 +5,11 @@ import com.restful_integration_for_blog_application.model.Blog;
 import com.restful_integration_for_blog_application.service.IBlogService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,19 +20,29 @@ import java.util.Optional;
 @RequestMapping("/api/rest/blog/v1")
 public class RestBlogController {
 
-
     @Autowired
     private IBlogService blogService;
 
-
     @GetMapping
-    public ResponseEntity<List<Blog>> getStudentList() {
-        List<Blog> studentList = blogService.findAll();
-        if (studentList.isEmpty()) {
+    public ResponseEntity<List<Blog>> getBlogList(@PageableDefault(value = 2) Pageable pageable) {
+        Page<Blog> blogPage = blogService.findAll(pageable);
+        if (blogPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(studentList, HttpStatus.OK);
+        if (pageable.getPageNumber() > blogPage.getTotalPages()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(blogPage.getContent(), HttpStatus.OK);
     }
+
+//    @GetMapping
+//    public ResponseEntity<List<Blog>> getStudentList() {
+//        List<Blog> studentList = blogService.findAll();
+//        if (studentList.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        return new ResponseEntity<>(studentList, HttpStatus.OK);
+//    }
 
     @PostMapping
         public ResponseEntity<Blog> save(@RequestBody BlogDto blogDto) {
@@ -39,7 +51,6 @@ public class RestBlogController {
             blogService.save(blog);
             return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<Blog> updateBlog(
@@ -64,4 +75,5 @@ public class RestBlogController {
     public ResponseEntity<List<Blog>> seachName(@RequestParam String keyword) {
         return new ResponseEntity<>(blogService.findByName(keyword),HttpStatus.OK);
     }
+
 }

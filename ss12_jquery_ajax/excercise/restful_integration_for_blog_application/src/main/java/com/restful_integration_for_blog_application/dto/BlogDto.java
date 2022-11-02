@@ -4,8 +4,7 @@ public class BlogDto {
     private Integer id;
     private String author;
     private Integer price;
-    private String status ;
-
+    private String status;
 
     public BlogDto() {
     }

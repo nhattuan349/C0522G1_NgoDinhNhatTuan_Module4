@@ -39,7 +39,6 @@ public class RestBlogCategoryController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<Category> updateCategory(
             @PathVariable int id,
@@ -56,7 +55,4 @@ public class RestBlogCategoryController {
         BeanUtils.copyProperties(categoryDto, category);
         return new ResponseEntity<Category>(categoryService.save(category), HttpStatus.OK);
     }
-
-
-
 }

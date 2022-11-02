@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/create-student">Create new student</a>
+
+<form th:action="@{/search}" method="get">
+    <input  th:type="text" name="keyword">
+    <input  th:type="submit" name="action" value="findByName">
+</form>
+
+<h1>Students</h1>
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>gender</th>
+
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="student : ${students}">
+        <tr>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.gender}"></td>
+
+            <td><a th:href="@{/edit-student/__${student.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-student/__${student.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+
+<div>
+    <a th:href="@{'/students'(page=${students.number - 1})}"
+       th:if="${students.hasPrevious()}">Previous</a>
+
+    <span th:text="${students.number + 1}"></span>
+    <span th:text="${students.totalPages}"></span>
+
+    <a th:href="@{'/students'(page = ${students.number + 1})}"
+       th:if="${students.hasNext()}">Next</a>
+</div>
+</body>
+</html>

@@ -32,23 +32,43 @@ public class UserController {
         return modelAndView;
     }
 
+//    @PostMapping("/create-user")
+//    public String saveUser(@Validated @ModelAttribute UserDto userDto,
+//                           BindingResult bindingResult,
+//                           RedirectAttributes redirectAttributes,
+//                           Model model
+//    ) {
+//        new UserDto().validate(userDto, bindingResult);
+//        if (bindingResult.hasFieldErrors()) {
+//            return "/user/create";
+//        } else {
+//            User user = new User();
+//            BeanUtils.copyProperties(userDto, user);
+//            model.addAttribute("userDto",userDto);
+//            userService.save(user);
+//            redirectAttributes.addFlashAttribute("message","Add new user" +
+//                    "successfully!");
+//            return "redirect:/users";
+//        }
+//    }
+
     @PostMapping("/create-user")
-    public String saveUser(@Validated @ModelAttribute UserDto userDto,
-                           BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes,
-                           Model model
+    public ModelAndView saveUser(@Validated @ModelAttribute UserDto userDto,
+                                 BindingResult bindingResult,
+                                 @PageableDefault(value = 2) Pageable pageable
     ) {
         new UserDto().validate(userDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            return "/user/create";
+            ModelAndView modelAndView = new ModelAndView("/user/create");
+            return modelAndView;
         } else {
             User user = new User();
             BeanUtils.copyProperties(userDto, user);
-            model.addAttribute("userDto",userDto);
             userService.save(user);
-            redirectAttributes.addFlashAttribute("message","Add new user" +
-                    "successfully!");
-            return "redirect:/users";
+            ModelAndView modelAndView = new ModelAndView("/user/list");
+            modelAndView.addObject("message", "Add new successfully!");
+            modelAndView.addObject("users", userService.findAll(pageable));
+            return modelAndView;
         }
     }
 
@@ -60,7 +80,6 @@ public class UserController {
         return modelAndView;
 
     }
-
 
     @GetMapping("/edit-user/{id}")
     public ModelAndView showEditForm(@PathVariable int id) {
@@ -104,11 +123,11 @@ public class UserController {
 
 
     @GetMapping("/search")
-    public String seachName(@PageableDefault Pageable pageable,
-                            @RequestParam String keyword, Model model) {
-
-        model.addAttribute("users", userService.findByName(pageable, keyword));
-        return "user/list";
+    public ModelAndView seachName(@PageableDefault Pageable pageable,
+                            @RequestParam String keyword) {
+        ModelAndView modelAndView = new ModelAndView("user/list");
+        modelAndView.addObject("users", userService.findByName(pageable, keyword));
+        return modelAndView;
     }
 
 
