@@ -15,6 +15,7 @@
 </button>
 <input type="text" id="search">
 <button id="searchbtn">Search</button>
+<button id="more"> More</button>
 <table  class="table">
 
     <thead>
@@ -130,6 +131,36 @@
                 }
             })
         })
+
+        $("#more").click(function () {
+            let pageNumber = parseInt($("#page-number").val());
+            $("#page-number").val(pageNumber + 1);
+            $.ajax({
+                url: "http://localhost:8080/api/rest/blog/v1?page=" + (pageNumber + 1),
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let tr = [];
+                    if (data) {
+                        for (let i = 0; i < data.length; i++) {
+                            tr.push("<tr>")
+                            tr.push("<td>" + data[i].id + "</td>");
+                            tr.push("<td>" + data[i].author + "</td>");
+                            tr.push("<td>" + data[i].price + "</td>");
+                            tr.push("<td>" + data[i].status + "</td>");
+                            tr.push("</tr>")
+                        }
+                    } else {
+                        tr.push("<tr>")
+                        tr.push("<td colspan='3'> No data ..... </td>")
+                        tr.push("</tr>")
+                        $("#more").hide();
+                    }
+                    $("tbody").append(tr.join(""));
+                }
+            })
+        })
+
     })
 
 
