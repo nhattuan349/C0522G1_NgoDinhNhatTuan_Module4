@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface IBlogService extends IGeneralService<Blog> {
 
+
+    Page<Blog> findByAuthor(String authorSearch, Pageable pageable);
+
     List<Blog> findByName(String keyword);
 
     Page<Blog> findAll(Pageable pageable);

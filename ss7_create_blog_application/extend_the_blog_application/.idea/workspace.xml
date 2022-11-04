@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="262e58ba-5ede-44e0-9531-23fe7da861fe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/contract/AttachFacility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/contract/Contract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/contract/ContractDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/customer/CustomerType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/employee/Division.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/employee/EducationDegree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/employee/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/facility/Facility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/facility/FacilityType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/facility/RentType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/user/MyUserDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/user/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../casestudy/furama_casestudy_module_4/src/main/java/com/furama_casestudy_module_4/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/ajax_integration_for_blogpage_application/view/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/ajax_integration_for_blogpage_application/view/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/restful_integration_for_blog_application/src/main/java/com/restful_integration_for_blog_application/controller/RestBlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/restful_integration_for_blog_application/src/main/java/com/restful_integration_for_blog_application/controller/RestBlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/restful_integration_for_blog_application/src/main/java/com/restful_integration_for_blog_application/repository/IBlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/restful_integration_for_blog_application/src/main/java/com/restful_integration_for_blog_application/repository/IBlogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/restful_integration_for_blog_application/src/main/java/com/restful_integration_for_blog_application/service/IBlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/restful_integration_for_blog_application/src/main/java/com/restful_integration_for_blog_application/service/IBlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/restful_integration_for_blog_application/src/main/java/com/restful_integration_for_blog_application/service/impl/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss12_jquery_ajax/excercise/restful_integration_for_blog_application/src/main/java/com/restful_integration_for_blog_application/service/impl/BlogService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2H3IYQAu5KuIXG7bBRVrZVQPTPq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="262e58ba-5ede-44e0-9531-23fe7da861fe" name="Changes" comment="" />
+      <created>1667507388175</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667507388175</updated>
+      <workItem from="1667507389486" duration="38000" />
+      <workItem from="1667507445489" duration="2172000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

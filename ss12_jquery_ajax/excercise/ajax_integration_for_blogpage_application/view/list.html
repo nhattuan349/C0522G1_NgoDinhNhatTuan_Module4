@@ -15,12 +15,12 @@
 </button>
 <input type="text" id="search">
 <button id="searchbtn">Search</button>
-<button id="more"> More</button>
+<button id="moreSearch"> More</button>
 <table  class="table">
 
     <thead>
         <tr>
-            <th>Id</th>
+            <th>id</th>
             <th>Author</th>
             <th>Price</th>
             <th>Status</th>
@@ -132,11 +132,12 @@
             })
         })
 
-        $("#more").click(function () {
-            let pageNumber = parseInt($("#page-number").val());
-            $("#page-number").val(pageNumber + 1);
+        $("#moreSearch").click(function () {
+            let pageNumber = parseInt($("#page").val());
+            $("#page").val(pageNumber + 1);
             $.ajax({
-                url: "http://localhost:8080/api/rest/blog/v1?page=" + (pageNumber + 1),
+                url: "http://localhost:8080/api/rest/blog/v1?page=" + (pageNumber + 1)+
+                    "&authorSearch=" + $("#txt-search").val(),
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
@@ -154,7 +155,7 @@
                         tr.push("<tr>")
                         tr.push("<td colspan='3'> No data ..... </td>")
                         tr.push("</tr>")
-                        $("#more").hide();
+                        $("#moreSearch").hide();
                     }
                     $("tbody").append(tr.join(""));
                 }

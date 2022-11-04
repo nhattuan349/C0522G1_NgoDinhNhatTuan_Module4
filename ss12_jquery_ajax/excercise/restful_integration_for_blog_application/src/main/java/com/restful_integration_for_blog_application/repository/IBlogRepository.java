@@ -14,4 +14,9 @@ import java.util.List;
 public interface IBlogRepository extends JpaRepository<Blog, Integer> {
     @Query(value = "select * from blog where author like:keyword",nativeQuery = true)
     List<Blog> searchByName(@Param("keyword") String keyword);
+
+    @Query(value = "select * from blog where author like %:author%", nativeQuery = true)
+    Page<Blog> findAuthor(@Param("author") String author,
+                          Pageable pageable);
+
 }

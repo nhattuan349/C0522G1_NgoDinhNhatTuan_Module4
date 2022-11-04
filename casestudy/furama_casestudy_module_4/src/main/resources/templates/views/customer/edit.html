@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit customer</title>
+</head>
+<body>
+<h1>Edit student</h1>
+<p>
+    <a href="customers">Customer list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{customer/edit}" th:object="${customerDto}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+            <td style="color: red"
+                th:if="${#fields.hasErrors('name')}"
+                th:errors="*{name}"> Name Error</td>
+        </tr>
+        <tr>
+            <td>dateOfBirth:</td>
+            <td><input type="text" th:field="*{dateOfBirth}"/></td>
+        </tr>
+        <tr>
+            <td>gender:</td>
+            <td><input type="text" th:field="*{gender}"/></td>
+        </tr>
+        <tr>
+            <td>idCard:</td>
+            <td><input type="text" th:field="*{idCard}"/></td>
+            <td style="color: red"
+                th:if="${#fields.hasErrors('idCard')}"
+                th:errors="*{idCard}"> idCard Error</td>
+        </tr>
+        <tr>
+            <td>phoneNumber:</td>
+            <td><input type="text" th:field="*{phoneNumber}"/></td>
+            <td style="color: red"
+                th:if="${#fields.hasErrors('phoneNumber')}"
+                th:errors="*{phoneNumber}"> phoneNumber Error</td>
+        </tr>
+        <tr>
+            <td>email:</td>
+            <td><input type="text" th:field="*{email}"/></td>
+            <td style="color: red"
+                th:if="${#fields.hasErrors('email')}"
+                th:errors="*{email}"> email Error</td>
+        </tr>
+        <tr>
+            <td>address:</td>
+            <td><input type="text" th:field="*{address}"/></td>
+        </tr>
+        <tr>
+            <td>status:</td>
+            <td><input type="text" th:field="*{status}"/></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update customer"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

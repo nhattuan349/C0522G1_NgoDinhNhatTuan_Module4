@@ -76,4 +76,19 @@ public class RestBlogController {
         return new ResponseEntity<>(blogService.findByName(keyword),HttpStatus.OK);
     }
 
+    @GetMapping("/searchAuthor")
+    public ResponseEntity<List<Blog>> getBlogByAuthor(@PageableDefault(value = 2) Pageable pageable,
+                                                      @RequestParam(value = "authorSearch") String authorSearch) {
+        Page<Blog> blogList;
+        if (authorSearch.equals("")) {
+            blogList = blogService.findAll(pageable);
+        } else {
+            blogList = blogService.findByAuthor(authorSearch, pageable);
+            if (blogList.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        return new ResponseEntity<>(blogList.getContent(), HttpStatus.OK);
+    }
+
 }

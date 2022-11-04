@@ -98,6 +98,7 @@ public class TheSongDto implements Validator {
                 "ỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ ]{3,800}$")){
             errors.rejectValue("songType","songType.errors","Tên loại bài hát không hợp lệ");
         }
+
     }
 }
 

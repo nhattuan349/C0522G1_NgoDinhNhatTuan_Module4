@@ -38,6 +38,11 @@ public class BlogService implements IBlogService {
     }
 
     @Override
+    public Page<Blog> findByAuthor(String authorSearch, Pageable pageable) {
+        return blogRepository.findAuthor(authorSearch, pageable);
+    }
+
+    @Override
     public List<Blog> findByName(String keyword) {
         return blogRepository.searchByName("%"+keyword+"%");
     }
