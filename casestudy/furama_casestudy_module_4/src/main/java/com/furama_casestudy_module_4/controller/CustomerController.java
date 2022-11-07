@@ -1,6 +1,6 @@
 package com.furama_casestudy_module_4.controller;
 
-import com.furama_casestudy_module_4.dto.Customer.CustomerDto;
+import com.furama_casestudy_module_4.dto.customer.CustomerDto;
 import com.furama_casestudy_module_4.model.customer.Customer;
 import com.furama_casestudy_module_4.service.impl.customer.CustomerService;
 import com.furama_casestudy_module_4.service.impl.customer.CustomerTypeService;

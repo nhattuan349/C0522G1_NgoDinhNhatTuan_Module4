@@ -1,4 +1,4 @@
-package com.furama_casestudy_module_4.dto.Customer;
+package com.furama_casestudy_module_4.dto.customer;
 
 import com.furama_casestudy_module_4.model.customer.CustomerType;
 import org.springframework.validation.Errors;
