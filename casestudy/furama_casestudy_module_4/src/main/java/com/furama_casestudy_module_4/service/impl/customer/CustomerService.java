@@ -1,8 +1,8 @@
 package com.furama_casestudy_module_4.service.impl.customer;
 
 import com.furama_casestudy_module_4.model.customer.Customer;
-import com.furama_casestudy_module_4.repository.ICustomerRepository;
-import com.furama_casestudy_module_4.service.ICustomerService;
+import com.furama_casestudy_module_4.repository.customer.ICustomerRepository;
+import com.furama_casestudy_module_4.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +26,6 @@ public class CustomerService implements ICustomerService {
         return customerRepository.findByBlogNameContaining(pageable, "%" + name + "%");
     }
 
-
     @Override
     public Page<Customer> findByName(Pageable pageable, String name, String email) {
         return customerRepository.findByCustomerNameAndEmailContaining(pageable, "%" + name + "%", "%" + email + "%");
@@ -37,20 +36,7 @@ public class CustomerService implements ICustomerService {
         return customerRepository.findByCustomerNameEmailAndCustomerTypeContaining(pageable, "%" + name + "%", "%" + email + "%","%" + customerType + "%");
     }
 
-    @Override
-    public Page<Customer> findByStatus(String status, Pageable pageable) {
-        return customerRepository.findPageStatus(status, pageable);
-    }
 
-    @Override
-    public Page<Customer> findByNameAndEmail(String name, String email, String status, Pageable pageable) {
-        return customerRepository.findPageNameAndEmail(name, email, status, pageable);
-    }
-
-    @Override
-    public Page<Customer> findByNameEmailAndCustomerTypeId(String name, String email, String status, String customerTypeId, Pageable pageable) {
-        return customerRepository.findByNameAndEmailAndCustomerTypeId(name, email, status, customerTypeId, pageable);
-    }
 
 //    @Override
 //    public void delete(int id) {

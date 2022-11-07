@@ -15,7 +15,7 @@ public class Facility {
     private Double cost;
     private Integer maxPeople;
     private String  standardRoom;
-    private String description_other_convenience;
+    private String descriptionOtherConvenience;
     private Double poolArea;
     private Integer numberOfFloors;
     private String facilityFree;
@@ -38,16 +38,16 @@ public class Facility {
 
     public Facility(Integer id, String name, Integer area,
                     Double cost, Integer maxPeople, String standardRoom,
-                    String description_other_convenience, Double poolArea,
-                    Integer numberOfFloors, String facilityFree, Integer status,
-                    RentType rentType, FacilityType facilityType, Set<Contract> contracts) {
+                    String descriptionOtherConvenience, Double poolArea, Integer numberOfFloors,
+                    String facilityFree, Integer status, RentType rentType,
+                    FacilityType facilityType, Set<Contract> contracts) {
         this.id = id;
         this.name = name;
         this.area = area;
         this.cost = cost;
         this.maxPeople = maxPeople;
         this.standardRoom = standardRoom;
-        this.description_other_convenience = description_other_convenience;
+        this.descriptionOtherConvenience = descriptionOtherConvenience;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
         this.facilityFree = facilityFree;
@@ -105,12 +105,12 @@ public class Facility {
         this.standardRoom = standardRoom;
     }
 
-    public String getDescription_other_convenience() {
-        return description_other_convenience;
+    public String getDescriptionOtherConvenience() {
+        return descriptionOtherConvenience;
     }
 
-    public void setDescription_other_convenience(String description_other_convenience) {
-        this.description_other_convenience = description_other_convenience;
+    public void setDescriptionOtherConvenience(String descriptionOtherConvenience) {
+        this.descriptionOtherConvenience = descriptionOtherConvenience;
     }
 
     public Double getPoolArea() {

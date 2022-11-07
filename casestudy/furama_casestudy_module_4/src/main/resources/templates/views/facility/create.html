@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create facility</title>
+</head>
+<body>
+<h1>Create facility</h1>
+<p>
+    <a th:href="@{/facility}">Facility list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/facility/create}" th:object="${facilityDto}" method="post">
+    <table>
+        <tr>
+            <p></p>
+            <td>name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+            <td style="color: red"
+                th:if="${#fields.hasErrors('name')}"
+                th:errors="*{name}"> Name Error
+            </td>
+        </tr>
+
+        <tr>
+            <td>area:</td>
+            <td><input type="text" th:field="*{area}"/></td>
+        </tr>
+
+        <tr>
+            <td>cost:</td>
+            <td><input type="text" th:field="*{cost}"/></td>
+        </tr>
+
+        <tr>
+            <td>maxPeople:</td>
+            <td><input type="text" th:field="*{maxPeople}"/></td>
+        </tr>
+
+        <tr>
+            <td>standardRoom:</td>
+            <td><input type="text" th:field="*{standardRoom}"/></td>
+        </tr>
+
+        <tr>
+            <td>descriptionOtherConvenience:</td>
+            <td><input type="text" th:field="*{descriptionOtherConvenience}"/></td>
+        </tr>
+
+        <tr>
+            <td>poolArea:</td>
+            <td><input type="text" th:field="*{poolArea}"/></td>
+        </tr>
+
+        <tr>
+            <td>numberOfFloors:</td>
+            <td><input type="text" th:field="*{numberOfFloors}"/></td>
+        </tr>
+
+        <tr>
+            <td>facilityFree:</td>
+            <td><input type="text" th:field="*{facilityFree}"/></td>
+        </tr>
+
+        <tr>
+            <td>RentType:</td>
+            <td>
+                <select th:field="*{rentType}">
+                    <option th:each="item : ${rentTypes}"
+                            th:value="${item.id}" th:text="${item.name}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>facility type:</td>
+            <td>
+                <select th:field="*{facilityType}">
+                    <option th:each="item : ${facilityTypes}"
+                            th:value="${item.id}" th:text="${item.name}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create customer"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+</table>

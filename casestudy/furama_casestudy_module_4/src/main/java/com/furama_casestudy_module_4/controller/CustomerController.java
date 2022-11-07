@@ -27,6 +27,16 @@ public class CustomerController {
     @Autowired
     private CustomerTypeService customerTypeService;
 
+    //    @GetMapping("")
+//    public String listCustomers(@PageableDefault(value = 5) Pageable pageable,
+//                                @RequestParam Optional<String> name,
+//                                Model model) {
+//        model.addAttribute("name", name.orElse(""));
+//        model.addAttribute("customers", customerService.findByName(pageable, name.orElse("")));
+//        model.addAttribute("customerTypes", customerTypeService.findAll());
+//        return "views/customer/list";
+//    }
+
 //    @GetMapping("")
 //    public ModelAndView listCustomers(@PageableDefault(value = 5) Pageable pageable,
 //                                      @RequestParam Optional<String> name) {
@@ -53,26 +63,18 @@ public class CustomerController {
     public ModelAndView listCustomers(@PageableDefault(value = 5) Pageable pageable,
                                       @RequestParam Optional<String> name,
                                       @RequestParam Optional<String> email,
-                                      @RequestParam Optional<String> customerTypeId) {
+                                      @RequestParam Optional<String> customerType) {
         ModelAndView modelAndView = new ModelAndView("views/customer/list");
         modelAndView.addObject("name", name.orElse(""));
         modelAndView.addObject("email", email.orElse(""));
-        modelAndView.addObject("customerTypeId", customerTypeId.orElse(""));
-        modelAndView.addObject("customers", customerService.findByName(pageable, name.orElse(""), email.orElse(""),customerTypeId.orElse("")));
+        modelAndView.addObject("customerType", customerType.orElse(""));
+        modelAndView.addObject("customers", customerService.findByName(pageable, name.orElse(""), email.orElse(""),customerType.orElse("")));
         modelAndView.addObject("customerTypes", customerTypeService.findAll());
         return modelAndView;
     }
 
 
-//    @GetMapping("")
-//    public String listCustomers(@PageableDefault(value = 5) Pageable pageable,
-//                                @RequestParam Optional<String> name,
-//                                Model model) {
-//        model.addAttribute("name", name.orElse(""));
-//        model.addAttribute("customers", customerService.findByName(pageable, name.orElse("")));
-//        model.addAttribute("customerTypes", customerTypeService.findAll());
-//        return "views/customer/list";
-//    }
+
 
     @GetMapping("/show-form-create")
     public ModelAndView showCreateForm() {
@@ -167,15 +169,7 @@ public class CustomerController {
 //        return "redirect:customers";
 //    }
 
-//    @GetMapping("/delete/{id}")
-//    public String delete(@PathVariable int id) {
-//        Optional<Customer> customer = customerService.findById(id);
-//        if (customer.isPresent()) {
-//            customer.get().setStatus("0");
-//            customerService.save(customer.get());
-//        }
-//        return "redirect:/customers";
-//    }
+
 
     @GetMapping("/delete")
     public String delete(@RequestParam int id) {
@@ -191,25 +185,5 @@ public class CustomerController {
 //        return modelAndView;
 //    }
 
-//    @GetMapping("/search2")
-//    public String getListFind(@RequestParam(value = "page", defaultValue = "0") Integer page,
-//                              @RequestParam(value = "name", defaultValue = "") String name,
-//                              @RequestParam(value = "email", defaultValue = "") String email,
-//                              @RequestParam(value = "status", defaultValue = "1") String status,
-//                              @RequestParam(value = "customerTypeId", defaultValue = "") String customerTypeId,
-//                              Model model) {
-//        Sort sort = Sort.by("name").ascending();
-//        model.addAttribute("customerTypes", customerTypeService.findAll());
-//        model.addAttribute("name", name);
-//        model.addAttribute("email", email);
-//        model.addAttribute("customerTypeId", customerTypeId);
-//        if (customerTypeId.equals("") && name.equals("") && email.equals("")) {
-//            model.addAttribute("customers", customerService.findByStatus(status, PageRequest.of(page, 5, sort)));
-//        } else if (customerTypeId.equals("")) {
-//            model.addAttribute("customers", customerService.findByNameAndEmail(name, email, status, PageRequest.of(page, 5, sort)));
-//        } else {
-//            model.addAttribute("customers", customerService.findByNameEmailAndCustomerTypeId(name, email, status, customerTypeId, PageRequest.of(page, 5, sort)));
-//        }
-//        return "views/customer/list";
-//    }
+
 }

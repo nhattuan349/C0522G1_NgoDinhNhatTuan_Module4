@@ -34,12 +34,14 @@
         </tr>
         <tr>
             <td>dateOfBirth:</td>
-            <td><input type="text" th:field="*{dateOfBirth}"/></td>
+            <td><input type="date" th:field="*{dateOfBirth}"/></td>
         </tr>
+
         <tr>
             <td>gender:</td>
             <td><input type="text" th:field="*{gender}"/></td>
         </tr>
+
         <tr>
             <td>idCard:</td>
             <td><input type="text" th:field="*{idCard}"/></td>
@@ -48,6 +50,7 @@
                 th:errors="*{idCard}">idCard Error
             </td>
         </tr>
+
         <tr>
             <td>phoneNumber:</td>
             <td><input type="text" th:field="*{phoneNumber}"/></td>
@@ -68,10 +71,7 @@
             <td>address:</td>
             <td><input type="text" th:field="*{address}"/></td>
         </tr>
-<!--        <tr>-->
-<!--            <td>status:</td>-->
-<!--            <td><input type="hidden" th:field="*{status} "/></td>-->
-<!--        </tr>-->
+
         <tr>
             <td></td>
             <td><input type="submit" value="Create customer"></td>

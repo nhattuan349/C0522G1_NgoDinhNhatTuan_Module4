@@ -1,6 +1,6 @@
 package com.furama_casestudy_module_4.config;
 
-import com.furama_casestudy_module_4.service.impl.customer.MyUserDetailServiceImpl;
+import com.furama_casestudy_module_4.service.impl.user.MyUserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

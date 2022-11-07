@@ -28,23 +28,15 @@
         <option value="" selected>
             Choose something
         </option>
-        <option th:each="item : ${customerTypes}"
-                th:value="${item.id}" th:text="${item.name}">
+        <option
+                th:each="item : ${customerTypes}"
+                th:value="${item.name}" th:text="${item.name}">
         </option>
     </select>
     <input th:type="submit" name="action" value="findByName">
 </form>
 
-<!--<form th:action="@{customer/search2}" method="get">-->
-<!--    <input style="width: 20%" type="text" name="name" placeholder="Name">-->
-<!--    <input style="width: 20%" type="text" name="email" placeholder="Email">-->
 
-<!--    <select style="width: 20%" th:name="customerTypeId">-->
-<!--        <option value="" selected>Choose Something</option>-->
-<!--        <option th:each="item : ${customerTypes}" th:value="${item.id}" th:text="${item.name}"></option>-->
-<!--    </select>-->
-<!--    <input type="submit" value="Search" style="width: 10%">-->
-<!--</form>-->
 <h1>customers</h1>
 <table class="table table-bordered ">
     <thead style="background-color: #3dd5f3;color: black">
@@ -117,7 +109,7 @@
     <span th:text="${customers.number + 1}"></span>
     <span th:text="${customers.totalPages}"></span>
 
-    <a th:href="@{'/customer'(page = ${customers.number + 1},name=${name})}"
+    <a th:href="@{'/customer'(page = ${customers.number + 1},name=${name},email=${email})}"
        th:if="${customers.hasNext()}">Next</a>
 </div>
 

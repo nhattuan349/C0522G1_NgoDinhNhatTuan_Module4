@@ -1,8 +1,8 @@
 package com.furama_casestudy_module_4.service.impl.customer;
 
 import com.furama_casestudy_module_4.model.customer.CustomerType;
-import com.furama_casestudy_module_4.repository.ICustomerTypeRepository;
-import com.furama_casestudy_module_4.service.ICustomerTypeService;
+import com.furama_casestudy_module_4.repository.customer.ICustomerTypeRepository;
+import com.furama_casestudy_module_4.service.customer.ICustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
