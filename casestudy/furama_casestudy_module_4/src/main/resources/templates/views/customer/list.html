@@ -3,31 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<a href="create">Create new customer</a>
+<a style="text-decoration: none" th:href="@{/customer/show-form-create}">Thêm mới khách hàng</a>
 
-<form th:action="@{search}" method="get">
-    <input  th:type="text" name="name">
-    <input  th:type="submit" name="action" value="findByName">
+<form th:action="@{/customer}" method="get">
+    <input th:type="text" name="name">
+    <input th:type="submit" name="action" value="findByName">
 </form>
 
+<!--<form th:action="@{/customer}" method="get">-->
+<!--    <input th:type="text" name="name">-->
+<!--    <input th:type="text" name="email">-->
+<!--    <input th:type="submit" name="action" value="findByName">-->
+<!--</form>-->
 
-<form action="/customer/search2" method="get">
-<input style="width: 20%" type="text" name="name" placeholder="Name">
-<input style="width: 20%" type="text" name="email" placeholder="Email">
 
-<select style="width: 20%" th:name="customerTypeId">
-    <option value=""  selected>Choose Something</option>
-    <option th:each="item : ${customerTypes}" th:value="${item.id}" th:text="${item.name}"></option>
-</select>
+<!--<form th:action="@{customer/search2}" method="get">-->
+<!--    <input style="width: 20%" type="text" name="name" placeholder="Name">-->
+<!--    <input style="width: 20%" type="text" name="email" placeholder="Email">-->
 
-<input type="submit" value="Search" style="width: 10%">
-</form>
+<!--    <select style="width: 20%" th:name="customerTypeId">-->
+<!--        <option value="" selected>Choose Something</option>-->
+<!--        <option th:each="item : ${customerTypes}" th:value="${item.id}" th:text="${item.name}"></option>-->
+<!--    </select>-->
+<!--    <input type="submit" value="Search" style="width: 10%">-->
+<!--</form>-->
 <h1>customers</h1>
-<table border="1">
+<table class="table table-bordered ">
+    <thead style="background-color: #3dd5f3;color: black">
     <tr>
+        <th>stt</th>
         <th>name</th>
+        <th>CustomerType</th>
         <th>dateOfBirth</th>
         <th>gender</th>
         <th>idCard</th>
@@ -35,36 +45,78 @@
         <th>email</th>
         <th>address</th>
         <th>status</th>
-
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    <th:block th:each="customer : ${customers}">
-        <tr>
-            <td th:text="${customer.name}"></td>
-            <td th:text="${customer.dateOfBirth}"></td>
-            <td th:text="${customer.gender}"></td>
-            <td th:text="${customer.idCard}"></td>
-            <td th:text="${customer.phoneNumber}"></td>
-            <td th:text="${customer.email}"></td>
-            <td th:text="${customer.address}"></td>
-            <td th:text="${customer.status}"></td>
-
-            <td><a th:href="@{edit/__${customer.id}__ }">Edit</a></td>
-            <td><a th:href="@{customer/delete/__${customer.id}__ }">Delete</a></td>
-        </tr>
-    </th:block>
+    </thead>
+    <tbody>
+    <tr th:each="customer,index : ${customers}">
+        <td th:text="${index.count+5*customers.number}"></td>
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.customerType.getName()}"></td>
+        <td th:text="${customer.dateOfBirth}"></td>
+        <td th:text="${customer.gender}"></td>
+        <td th:text="${customer.idCard}"></td>
+        <td th:text="${customer.phoneNumber}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.address}"></td>
+        <td th:text="${customer.status}"></td>
+        <td>
+            <a th:href="@{/customer/show-form-edit/__${customer.id}__ }">Edit</a>
+        </td>
+        <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                    th:data-bs-target="'#staticBackdrop' + ${customer.id}"> Delete
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" th:id="staticBackdrop + ${customer.id}" data-bs-backdrop="static"
+                 data-bs-keyboard="false"
+                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header"><h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body"> Bạn có muốn xóa khách hàng
+                            <span class="text-info" th:text="${customer.name}"></span>
+                        </div>
+                        <div class="modal-footer"><a th:href="@{/customer/delete(id=${customer.id})}"
+                                                     class="btn btn-outline-success">Xóa</a>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
 </table>
 
 <div>
-    <a th:href="@{'/customers'(page=${customers.number - 1})}"
+    <a th:href="@{'/customer'(page=${customers.number - 1},name=${name})}"
        th:if="${customers.hasPrevious()}">Previous</a>
 
     <span th:text="${customers.number + 1}"></span>
     <span th:text="${customers.totalPages}"></span>
 
-    <a th:href="@{'/customers'(page = ${customers.number + 1})}"
+    <a th:href="@{'/customer'(page = ${customers.number + 1},name=${name})}"
        th:if="${customers.hasNext()}">Next</a>
 </div>
+<!--<div>-->
+<!--    <a th:href="@{'/customer'(page=${customers.number - 1})}"-->
+<!--       th:if="${customers.hasPrevious()}">Previous</a>-->
+
+<!--    <span th:text="${customers.number + 1}"></span>-->
+<!--    <span th:text="${customers.totalPages}"></span>-->
+
+<!--    <a th:href="@{'/customer'(page = ${customers.number + 1})}"-->
+<!--       th:if="${customers.hasNext()}">Next</a>-->
+<!--</div>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+</script>
+<!--<script src="../../../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>-->
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.furama_casestudy_module_4.model.contract;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.furama_casestudy_module_4.model.customer.Customer;
 import com.furama_casestudy_module_4.model.employee.Employee;
 import com.furama_casestudy_module_4.model.facility.Facility;
@@ -15,14 +16,14 @@ public class Contract {
     private String startDate;
     private String endDate;
     private Double deposit;
+    private Integer status;
 
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 
-
     @ManyToOne
-    @JoinColumn(name = "customer_Id", referencedColumnName = "id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
     @ManyToOne
@@ -35,11 +36,20 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(Integer id, String startDate, String endDate, Double deposit) {
+    public Contract(Integer id, String startDate,
+                    String endDate, Double deposit,
+                    Integer status, Employee employee,
+                    Customer customer, Facility facility,
+                    Set<ContractDetail> contractDetails) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.deposit = deposit;
+        this.status = status;
+        this.employee = employee;
+        this.customer = customer;
+        this.facility = facility;
+        this.contractDetails = contractDetails;
     }
 
     public Integer getId() {
@@ -72,6 +82,14 @@ public class Contract {
 
     public void setDeposit(Double deposit) {
         this.deposit = deposit;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Employee getEmployee() {

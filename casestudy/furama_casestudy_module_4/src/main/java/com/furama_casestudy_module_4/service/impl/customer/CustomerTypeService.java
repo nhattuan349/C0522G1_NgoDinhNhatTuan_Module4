@@ -1,10 +1,7 @@
-package com.furama_casestudy_module_4.service.impl;
+package com.furama_casestudy_module_4.service.impl.customer;
 
-import com.furama_casestudy_module_4.model.customer.Customer;
 import com.furama_casestudy_module_4.model.customer.CustomerType;
-import com.furama_casestudy_module_4.repository.ICustomerRepository;
 import com.furama_casestudy_module_4.repository.ICustomerTypeRepository;
-import com.furama_casestudy_module_4.service.ICustomerService;
 import com.furama_casestudy_module_4.service.ICustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

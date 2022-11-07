@@ -13,4 +13,5 @@ public interface ICustomerTypeService extends IGeneralService<CustomerType>{
 
     List<CustomerType> findAll();
 
+
 }

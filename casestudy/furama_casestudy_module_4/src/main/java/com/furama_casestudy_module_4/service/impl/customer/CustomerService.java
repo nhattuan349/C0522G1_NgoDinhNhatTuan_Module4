@@ -1,4 +1,4 @@
-package com.furama_casestudy_module_4.service.impl;
+package com.furama_casestudy_module_4.service.impl.customer;
 
 import com.furama_casestudy_module_4.model.customer.Customer;
 import com.furama_casestudy_module_4.repository.ICustomerRepository;
@@ -23,11 +23,17 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Page<Customer> findByName(Pageable pageable, String name) {
-        return customerRepository.findByCustomerNameContaining(pageable,"%"+ name+"%");
+        return customerRepository.findByBlogNameContaining(pageable, "%" + name + "%");
+    }
+
+
+    @Override
+    public Page<Customer> findByName(Pageable pageable, String name, String email) {
+        return customerRepository.findByCustomerNameAndEmailContaining(pageable, "%" + name + "%", "%" + email + "%");
     }
 
     @Override
-    public Page<Customer> findByStatus( String status,Pageable pageable) {
+    public Page<Customer> findByStatus(String status, Pageable pageable) {
         return customerRepository.findPageStatus(status, pageable);
     }
 
@@ -40,6 +46,11 @@ public class CustomerService implements ICustomerService {
     public Page<Customer> findByNameEmailAndCustomerTypeId(String name, String email, String status, String customerTypeId, Pageable pageable) {
         return customerRepository.findByNameAndEmailAndCustomerTypeId(name, email, status, customerTypeId, pageable);
     }
+
+//    @Override
+//    public void delete(int id) {
+//        customerRepository.delete(id);
+//    }
 
     @Override
     public Iterable<Customer> findAll() {
@@ -58,6 +69,8 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void remove(int id) {
-        customerRepository.deleteById(id);
+        customerRepository.delete(id);
     }
+
+
 }

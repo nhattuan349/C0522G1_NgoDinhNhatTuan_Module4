@@ -1,6 +1,8 @@
 package com.furama_casestudy_module_4.model.customer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.furama_casestudy_module_4.model.contract.Contract;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -17,12 +19,14 @@ public class Customer {
     private String phoneNumber;
     private String email;
     private String address;
-    private String status;
+    @Column(columnDefinition = "BIT(1) default 0")
+    private Integer status;
 
     @ManyToOne
     @JoinColumn(name = "customer_type_id", referencedColumnName = "id")
     private CustomerType customerType;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "customer")
     private Set<Contract> contracts;
 
@@ -31,8 +35,8 @@ public class Customer {
 
     public Customer(Integer id, String name, String dateOfBirth,
                     Integer gender, String idCard, String phoneNumber,
-                    String email, String address, String status,
-                    CustomerType customerType) {
+                    String email, String address, Integer status,
+                    CustomerType customerType, Set<Contract> contracts) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -43,6 +47,7 @@ public class Customer {
         this.address = address;
         this.status = status;
         this.customerType = customerType;
+        this.contracts = contracts;
     }
 
     public Integer getId() {
@@ -109,11 +114,11 @@ public class Customer {
         this.address = address;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

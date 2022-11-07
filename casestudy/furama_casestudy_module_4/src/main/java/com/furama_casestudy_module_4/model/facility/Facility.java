@@ -19,7 +19,7 @@ public class Facility {
     private Double poolArea;
     private Integer numberOfFloors;
     private String facilityFree;
-    private String status;
+    private Integer status;
 
 
     @ManyToOne
@@ -39,7 +39,8 @@ public class Facility {
     public Facility(Integer id, String name, Integer area,
                     Double cost, Integer maxPeople, String standardRoom,
                     String description_other_convenience, Double poolArea,
-                    Integer numberOfFloors, String facilityFree, String status) {
+                    Integer numberOfFloors, String facilityFree, Integer status,
+                    RentType rentType, FacilityType facilityType, Set<Contract> contracts) {
         this.id = id;
         this.name = name;
         this.area = area;
@@ -51,8 +52,10 @@ public class Facility {
         this.numberOfFloors = numberOfFloors;
         this.facilityFree = facilityFree;
         this.status = status;
+        this.rentType = rentType;
+        this.facilityType = facilityType;
+        this.contracts = contracts;
     }
-
 
     public Integer getId() {
         return id;
@@ -134,11 +137,11 @@ public class Facility {
         this.facilityFree = facilityFree;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

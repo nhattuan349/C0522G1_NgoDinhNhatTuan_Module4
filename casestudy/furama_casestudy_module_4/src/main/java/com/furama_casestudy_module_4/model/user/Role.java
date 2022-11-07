@@ -7,45 +7,27 @@ import java.util.Set;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer roleId;
-    private String roleName;
-    private Integer status;
+    private Long id;
+
+    private String name;
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
-    public Role() {
+    public Long getId() {
+        return id;
     }
 
-    public Role(Integer roleId, String roleName, Integer status, Set<User> users) {
-        this.roleId = roleId;
-        this.roleName = roleName;
-        this.status = status;
-        this.users = users;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<User> getUsers() {

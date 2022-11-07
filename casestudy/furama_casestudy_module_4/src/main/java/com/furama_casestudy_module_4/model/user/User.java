@@ -11,33 +11,34 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer username;
-    private String password;
-    private boolean isEnabled;
-    private Integer status;
 
+    private String username;
+
+    private String password;
+
+    private boolean isEnabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name ="user_role",
-            joinColumns =@JoinColumn(name = "user_id"),
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> roles;
 
+
     @OneToMany(mappedBy = "user")
     private Set<Employee> employees;
 
-    public User(Long id, Integer username, String password,
-                boolean isEnabled, Integer status,
-                List<Role> roles, Set<Employee> employees) {
+    public User() {
+    }
+
+    public User(Long id, String username, String password, boolean isEnabled, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.isEnabled = isEnabled;
-        this.status = status;
         this.roles = roles;
-        this.employees = employees;
     }
 
     public Long getId() {
@@ -48,11 +49,11 @@ public class User {
         this.id = id;
     }
 
-    public Integer getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(Integer username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -72,14 +73,6 @@ public class User {
         isEnabled = enabled;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
     public List<Role> getRoles() {
         return roles;
     }
@@ -96,3 +89,4 @@ public class User {
         this.employees = employees;
     }
 }
+

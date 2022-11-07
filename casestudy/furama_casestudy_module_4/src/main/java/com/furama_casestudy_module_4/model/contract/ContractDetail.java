@@ -8,6 +8,7 @@ public class ContractDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer quanlity;
+    private Integer status;
 
 
     @ManyToOne
@@ -22,9 +23,14 @@ public class ContractDetail {
     public ContractDetail() {
     }
 
-    public ContractDetail(Integer id, Integer quanlity) {
+    public ContractDetail(Integer id, Integer quanlity,
+                          Integer status, Contract contract,
+                          AttachFacility attachFacility) {
         this.id = id;
         this.quanlity = quanlity;
+        this.status = status;
+        this.contract = contract;
+        this.attachFacility = attachFacility;
     }
 
     public Integer getId() {
@@ -41,6 +47,14 @@ public class ContractDetail {
 
     public void setQuanlity(Integer quanlity) {
         this.quanlity = quanlity;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Contract getContract() {

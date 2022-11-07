@@ -12,7 +12,7 @@ public class AttachFacility {
     private Double cost;
     private String unit;
     private String status;
-    private String statusDelete;
+    private Integer statusDelete;
 
 
     @OneToMany(mappedBy = "attachFacility")
@@ -22,13 +22,15 @@ public class AttachFacility {
     }
 
     public AttachFacility(Integer id, String name, Double cost,
-                          String unit, String status, String statusDelete) {
+                          String unit, String status, Integer statusDelete,
+                          Set<ContractDetail> contractDetails) {
         this.id = id;
         this.name = name;
         this.cost = cost;
         this.unit = unit;
         this.status = status;
         this.statusDelete = statusDelete;
+        this.contractDetails = contractDetails;
     }
 
     public Integer getId() {
@@ -71,11 +73,11 @@ public class AttachFacility {
         this.status = status;
     }
 
-    public String getStatusDelete() {
+    public Integer getStatusDelete() {
         return statusDelete;
     }
 
-    public void setStatusDelete(String statusDelete) {
+    public void setStatusDelete(Integer statusDelete) {
         this.statusDelete = statusDelete;
     }
 

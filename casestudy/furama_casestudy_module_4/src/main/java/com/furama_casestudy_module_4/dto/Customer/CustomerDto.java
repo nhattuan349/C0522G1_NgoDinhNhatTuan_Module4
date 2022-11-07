@@ -1,5 +1,6 @@
 package com.furama_casestudy_module_4.dto.Customer;
 
+import com.furama_casestudy_module_4.model.customer.CustomerType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -12,21 +13,23 @@ public class CustomerDto implements Validator {
     private String name;
     private String dateOfBirth;
     private Integer gender;
-    @NotBlank (message = " Tên Customer không được để trống")
+    @NotBlank(message = " Tên Customer không được để trống")
     private String idCard;
-    @NotBlank (message = " Tên Customer không được để trống")
+    @NotBlank(message = " Tên Customer không được để trống")
     private String phoneNumber;
-    @NotBlank (message = " Tên Customer không được để trống")
+    @NotBlank(message = " Tên Customer không được để trống")
     private String email;
     private String address;
-    private String status;
+    private Integer status;
+    private CustomerType customerType;
 
     public CustomerDto() {
     }
 
     public CustomerDto(Integer id, String name, String dateOfBirth,
                        Integer gender, String idCard, String phoneNumber,
-                       String email, String address, String status) {
+                       String email, String address, Integer status,
+                       CustomerType customerType) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -36,6 +39,7 @@ public class CustomerDto implements Validator {
         this.email = email;
         this.address = address;
         this.status = status;
+        this.customerType = customerType;
     }
 
     public Integer getId() {
@@ -102,12 +106,20 @@ public class CustomerDto implements Validator {
         this.address = address;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public CustomerType getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
     }
 
     @Override
@@ -123,24 +135,24 @@ public class CustomerDto implements Validator {
         if (!customerDto.name.matches("^[A-Z][A-Za-zàáãạảăắằẳẵặâấ" +
                 "ầẩẫậèéẹẻẽêềếểễệđìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụủưứừửữựỳỵỷỹý" +
                 "ÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨ" +
-                "ỤỦƯỨỪỬỮỰỲỴỶỸÝ ]*$")){
+                "ỤỦƯỨỪỬỮỰỲỴỶỸÝ ]*$")) {
             errors.rejectValue("Name", "name.errors",
                     "Name không hợp lệ (5-45 kí tự)");
         }
 
         if (!customerDto.phoneNumber.matches("^0[0-9]{9,11}$")) {
-            errors.rejectValue("phoneNumber","phoneNumber.errors",
+            errors.rejectValue("phoneNumber", "phoneNumber.errors",
                     "Phone Number không hợp lệ");
         }
 
         if (!customerDto.phoneNumber.matches("^[0-9]{9,10}$")) {
-            errors.rejectValue("idCard","idCard.errors",
+            errors.rejectValue("idCard", "idCard.errors",
                     "idCard không hợp lệ");
         }
 
         if (!customerDto.email.matches("^[(a-zA-Z0-9-\\_\\.!\\D)]" +
-                "+@[(a-zA-Z)]+\\.[(a-zA-Z)]{2,3}$")){
-            errors.rejectValue("email","email.errors",
+                "+@[(a-zA-Z)]+\\.[(a-zA-Z)]{2,3}$")) {
+            errors.rejectValue("email", "email.errors",
                     "Email không hợp lệ");
         }
     }

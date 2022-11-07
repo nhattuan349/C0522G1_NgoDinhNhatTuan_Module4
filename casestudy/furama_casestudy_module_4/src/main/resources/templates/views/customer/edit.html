@@ -7,12 +7,12 @@
 <body>
 <h1>Edit student</h1>
 <p>
-    <a href="customers">Customer list</a>
+    <a th:href="@{/customer}">Customer list</a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form th:action="@{customer/edit}" th:object="${customerDto}" method="post">
+<form th:action="@{/customer/edit}" th:object="${customerDto}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
@@ -21,6 +21,16 @@
             <td style="color: red"
                 th:if="${#fields.hasErrors('name')}"
                 th:errors="*{name}"> Name Error</td>
+        </tr>
+        <tr>
+            <td>customer type:</td>
+            <td>
+                <select th:field="*{customerType}">
+                    <option th:each="item : ${customerTypes}"
+                            th:value="${item.id}" th:text="${item.name}">
+                    </option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>dateOfBirth:</td>
@@ -55,10 +65,10 @@
             <td>address:</td>
             <td><input type="text" th:field="*{address}"/></td>
         </tr>
-        <tr>
-            <td>status:</td>
-            <td><input type="text" th:field="*{status}"/></td>
-        </tr>
+<!--        <tr>-->
+<!--            <td>status:</td>-->
+<!--            <td><input type="text" th:field="*{status}"/></td>-->
+<!--        </tr>-->
 
         <tr>
             <td></td>
