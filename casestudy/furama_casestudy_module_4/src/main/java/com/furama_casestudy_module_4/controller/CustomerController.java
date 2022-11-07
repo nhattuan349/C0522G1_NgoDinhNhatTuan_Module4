@@ -27,15 +27,15 @@ public class CustomerController {
     @Autowired
     private CustomerTypeService customerTypeService;
 
-    @GetMapping("")
-    public ModelAndView listCustomers(@PageableDefault(value = 5) Pageable pageable,
-                                      @RequestParam Optional<String> name) {
-        ModelAndView modelAndView = new ModelAndView("views/customer/list");
-        modelAndView.addObject("name", name.orElse(""));
-        modelAndView.addObject("customers", customerService.findByName(pageable, name.orElse("")));
-        modelAndView.addObject("customerTypes", customerTypeService.findAll());
-        return modelAndView;
-    }
+//    @GetMapping("")
+//    public ModelAndView listCustomers(@PageableDefault(value = 5) Pageable pageable,
+//                                      @RequestParam Optional<String> name) {
+//        ModelAndView modelAndView = new ModelAndView("views/customer/list");
+//        modelAndView.addObject("name", name.orElse(""));
+//        modelAndView.addObject("customers", customerService.findByName(pageable, name.orElse("")));
+//        modelAndView.addObject("customerTypes", customerTypeService.findAll());
+//        return modelAndView;
+//    }
 
 //    @GetMapping("")
 //    public ModelAndView listCustomers(@PageableDefault(value = 5) Pageable pageable,
@@ -48,6 +48,21 @@ public class CustomerController {
 //        modelAndView.addObject("customerTypes", customerTypeService.findAll());
 //        return modelAndView;
 //    }
+
+        @GetMapping("")
+    public ModelAndView listCustomers(@PageableDefault(value = 5) Pageable pageable,
+                                      @RequestParam Optional<String> name,
+                                      @RequestParam Optional<String> email,
+                                      @RequestParam Optional<String> customerTypeId) {
+        ModelAndView modelAndView = new ModelAndView("views/customer/list");
+        modelAndView.addObject("name", name.orElse(""));
+        modelAndView.addObject("email", email.orElse(""));
+        modelAndView.addObject("customerTypeId", customerTypeId.orElse(""));
+        modelAndView.addObject("customers", customerService.findByName(pageable, name.orElse(""), email.orElse(""),customerTypeId.orElse("")));
+        modelAndView.addObject("customerTypes", customerTypeService.findAll());
+        return modelAndView;
+    }
+
 
 //    @GetMapping("")
 //    public String listCustomers(@PageableDefault(value = 5) Pageable pageable,
