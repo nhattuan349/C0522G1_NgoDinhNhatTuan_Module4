@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Create facility</title>
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.css">
+
+
 </head>
 <body>
 <h1>Create facility</h1>
@@ -12,86 +15,120 @@
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form th:action="@{/facility/create}" th:object="${facilityDto}" method="post">
-    <table>
-        <tr>
-            <p></p>
-            <td>name:</td>
-            <td><input type="text" th:field="*{name}"/></td>
+
+<div class="container mb-2 bg-primary text-white" style="width:500px ;margin: 0px auto">
+    <form th:action="@{/facility/create}" th:object="${facilityDto}" method="post">
+
+        <div>
+            <label>name:</label>
+            <input type="text" th:field="*{name}"/>
             <td style="color: red"
                 th:if="${#fields.hasErrors('name')}"
                 th:errors="*{name}"> Name Error
             </td>
-        </tr>
+        </div>
 
-        <tr>
-            <td>area:</td>
-            <td><input type="text" th:field="*{area}"/></td>
-        </tr>
+        <div>
+            <label>area:</label>
+            <input type="text" th:field="*{area}"/>
+        </div>
 
-        <tr>
-            <td>cost:</td>
-            <td><input type="text" th:field="*{cost}"/></td>
-        </tr>
+        <div>
+            <label>cost:</label>
+            <input type="text" th:field="*{cost}"/>
+        </div>
 
-        <tr>
+        <div>
             <td>maxPeople:</td>
-            <td><input type="text" th:field="*{maxPeople}"/></td>
-        </tr>
+            <input type="text" th:field="*{maxPeople}"/></td>
+        </div>
+        <div>
+            <label>RentType:</label>
 
-        <tr>
-            <td>standardRoom:</td>
-            <td><input type="text" th:field="*{standardRoom}"/></td>
-        </tr>
+            <select th:field="*{rentType}" onchange="onchangeFacility(this.value)">
+                <option th:each="item : ${rentTypes}"
+                        th:value="${item.id}" th:text="${item.name}">
+                </option>
+            </select>
 
-        <tr>
-            <td>descriptionOtherConvenience:</td>
-            <td><input type="text" th:field="*{descriptionOtherConvenience}"/></td>
-        </tr>
+        </div>
 
-        <tr>
-            <td>poolArea:</td>
-            <td><input type="text" th:field="*{poolArea}"/></td>
-        </tr>
+        <div>
+            <label>facility type:</label>
 
-        <tr>
-            <td>numberOfFloors:</td>
-            <td><input type="text" th:field="*{numberOfFloors}"/></td>
-        </tr>
+            <select th:field="*{facilityType}">
+                <option th:each="item : ${facilityTypes}"
+                        th:value="${item.id}" th:text="${item.name}">
+                </option>
+            </select>
 
-        <tr>
-            <td>facilityFree:</td>
-            <td><input type="text" th:field="*{facilityFree}"/></td>
-        </tr>
+        </div>
+        <div id="standardRoom">
+            <label>standardRoom:</label>
+            <input type="text" th:field="*{standardRoom}"/>
+        </div>
 
-        <tr>
-            <td>RentType:</td>
-            <td>
-                <select th:field="*{rentType}">
-                    <option th:each="item : ${rentTypes}"
-                            th:value="${item.id}" th:text="${item.name}">
-                    </option>
-                </select>
-            </td>
-        </tr>
+        <div id="description">
+            <label >descriptionOtherConvenience:</label>
+            <input type="text" th:field="*{descriptionOtherConvenience}"/>
+        </div>
 
-        <tr>
-            <td>facility type:</td>
-            <td>
-                <select th:field="*{facilityType}">
-                    <option th:each="item : ${facilityTypes}"
-                            th:value="${item.id}" th:text="${item.name}">
-                    </option>
-                </select>
-            </td>
-        </tr>
+        <div id="poolArea">
+            <label >poolArea:</label>
+            <input type="text" th:field="*{poolArea}"/>
+        </div>
 
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Create customer"></td>
-        </tr>
-    </table>
-</form>
+        <div id="numberFloor">
+            <label >numberOfFloors:</label>
+            <input type="text" th:field="*{numberOfFloors}"/>
+        </div>
+
+        <div id="facilityFree">
+            <label >facilityFree:</label>
+            <input type="text" th:field="*{facilityFree}"/>
+        </div>
+
+
+        <div>
+
+            <input type="submit" value="Create customer">
+        </div>
+
+    </form>
+</div>
+
+<script src="/jquery-3.6.1.min.js"></script>
+<script src="bootstrap-5.0.2-dist/js/bootstrap.js"></script>
+<script>
+    function onchangeFacility(value) {
+        debugger
+        if (value == 1) {
+            $("#standardRoom").show();
+            $("#description").show();
+            $("#poolArea").show();
+            $("#numberFloor").show();
+            $("#facilityFree").hide();
+        }else if (value == 2) {
+            $("#standardRoom").show();
+            $("#description").show();
+            $("#poolArea").hide();
+            $("#numberFloor").show();
+            $("#facilityFree").hide();
+        }else if (value == 3) {
+            $("#standardRoom").hide();
+            $("#description").hide();
+            $("#poolArea").hide();
+            $("#numberFloor").hide();
+            $("#facilityFree").show();
+        }else {
+            $("#standardRoom").hide();
+            $("#description").hide();
+            $("#poolArea").hide();
+            $("#numberFloor").hide();
+            $("#facilityFree").hide();
+        }
+    }
+</script>
 </body>
 </html>
 </table>
