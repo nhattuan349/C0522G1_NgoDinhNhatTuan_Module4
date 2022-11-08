@@ -57,7 +57,6 @@ public class FacilityController {
     public ModelAndView saveFacility(@Validated @ModelAttribute FacilityDto facilityDto,
                                      BindingResult bindingResult,
                                      @PageableDefault(value = 2) Pageable pageable
-
     ) {
         new FacilityDto().validate(facilityDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {

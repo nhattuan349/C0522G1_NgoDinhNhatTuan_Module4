@@ -2,52 +2,52 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create facility</title>
+    <title>Create contract</title>
     <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap.css">
 
 
 </head>
 <body style="background: url(/images/slide_h3.jpg)">
-<h1 th:align="center" >Create facility</h1>
+<h1 th:align="center" >Create contract</h1>
 <p>
-    <a  style="color: #4f2216" th:href="@{/facility}">Facility list</a>
+    <a  style="color: #4f2216" th:href="@{/contract}">Contract list</a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
 
 <div class="d-block w-50  container mb-2 bg-primary " style="width:500px ;margin: 0px auto;background: url(/images/slide_h3.jpg">
-    <form th:action="@{/facility/create}" th:object="${facilityDto}" method="post">
+    <form th:action="@{/contract/create}" th:object="${contractDto}" method="post">
 
         <div class="mb-3">
-            <label class="form-label" style="color: #4f2216" >Name:</label>
-            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{name}"/>
-            <div style="color: red"
-                th:if="${#fields.hasErrors('name')}"
-                th:errors="*{name}"> Name Error
-            </div>
+            <label class="form-label" style="color: #4f2216" >startDate:</label>
+            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{startDate}"/>
         </div>
 
         <div class="mb-3">
-            <label  style="color: #4f2216" >Area:</label>
-            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{area}"/>
+            <label  style="color: #4f2216" >endDate:</label>
+            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{endDate}"/>
         </div>
 
         <div class="mb-3">
-            <label style="color: #4f2216" >Cost:</label>
-            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{cost}"/>
+            <label style="color: #4f2216" >deposit:</label>
+            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{deposit}"/>
         </div>
 
         <div class="mb-3">
-            <td style="color: #4f2216" >MaxPeople:</td>
-            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{maxPeople}"/></td>
+            <td style="color: #4f2216" >employee:</td>
+            <select class="form-control" aria-describedby="emailHelp" th:field="*{employee}">
+                <option th:each="item : ${employees}"
+                        th:value="${item.id}" th:text="${item.name}">
+                </option>
+            </select>
         </div>
 
         <div class="mb-3">
-            <label style="color: #4f2216" >RentType:</label>
+            <label style="color: #4f2216" >customer:</label>
 
-            <select class="form-control" aria-describedby="emailHelp" th:field="*{rentType}" onchange="onchangeFacility(this.value)">
-                <option th:each="item : ${rentTypes}"
+            <select class="form-control" aria-describedby="emailHelp" th:field="*{customer}">
+                <option th:each="item : ${customers}"
                         th:value="${item.id}" th:text="${item.name}">
                 </option>
             </select>
@@ -57,41 +57,15 @@
         <div class="mb-3">
             <label style="color: #4f2216" >Facility type:</label>
 
-            <select class="form-control" aria-describedby="emailHelp" th:field="*{facilityType}">
-                <option th:each="item : ${facilityTypes}"
+            <select class="form-control" aria-describedby="emailHelp" th:field="*{facility}">
+                <option th:each="item : ${facilities}"
                         th:value="${item.id}" th:text="${item.name}">
                 </option>
             </select>
 
-        </div>
-        <div id="standardRoom" class="mb-3">
-            <label style="color: #4f2216" >StandardRoom:</label>
-            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{standardRoom}"/>
-        </div>
-
-        <div id="description" class="mb-3">
-            <label  style="color: #4f2216" >Description Other Convenience:</label>
-            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{descriptionOtherConvenience}"/>
-        </div>
-
-        <div id="poolArea" class="mb-3">
-            <label  style="color: #4f2216" >PoolArea:</label>
-            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{poolArea}"/>
-        </div>
-
-        <div id="numberFloor" class="mb-3">
-            <label  style="color: #4f2216" >NumberOfFloors:</label>
-            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{numberOfFloors}"/>
-        </div>
-
-        <div id="facilityFree" class="mb-3">
-            <label  style="color: #4f2216" >FacilityFree:</label>
-            <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{facilityFree}"/>
-        </div>
-
 
         <div>
-            <input  style="color: #4f2216" type="submit" value="Create facility">
+            <input  style="color: #4f2216" type="submit" value="Create contract">
         </div>
 
     </form>
@@ -99,36 +73,7 @@
 
 <script src="/jquery-3.6.1.min.js"></script>
 <script src="/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
-<script>
-    function onchangeFacility(value) {
-        debugger
-        if (value == 1) {
-            $("#standardRoom").show();
-            $("#description").show();
-            $("#poolArea").show();
-            $("#numberFloor").show();
-            $("#facilityFree").hide();
-        }else if (value == 2) {
-            $("#standardRoom").show();
-            $("#description").show();
-            $("#poolArea").hide();
-            $("#numberFloor").show();
-            $("#facilityFree").hide();
-        }else if (value == 3) {
-            $("#standardRoom").hide();
-            $("#description").hide();
-            $("#poolArea").hide();
-            $("#numberFloor").hide();
-            $("#facilityFree").show();
-        }else {
-            $("#standardRoom").hide();
-            $("#description").hide();
-            $("#poolArea").hide();
-            $("#numberFloor").hide();
-            $("#facilityFree").hide();
-        }
-    }
-</script>
+
 </body>
 </html>
 </table>
