@@ -10,7 +10,7 @@
 <!--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
 </head>
 <body>
-<h1> Trang chu </h1>
+<!--<h1> Trang chu </h1>-->
 <!-- Chưa xác thực-->
 <div class="container-fluid">
     <div class="row">
@@ -42,6 +42,7 @@
     <!-- Tài nguyên của role User   -->
     <div sec:authorize="hasRole('USER')" style="color: green">
         <span> VIEW </span>
+        <span> <a href="http://localhost:8080/logout">logout</a> </span>
     </div>
 </div>
             </span>
@@ -59,7 +60,7 @@
                                 <a class="nav-link dropdown-toggle float-end" href="#" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="float-end "><a class="text-decoration-none"
-                                                                href="/home">Home</a></span>
+                                                                href="http://localhost:8080">Home</a></span>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -120,7 +121,7 @@
                                 <a class="nav-link dropdown-toggle float-end" href="#" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="float-end"><a class="text-decoration-none"
-                                                               href="/banhang">Contract</a></span>
+                                                               href="http://localhost:8080/contract">Contract</a></span>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -271,25 +272,25 @@
         </div>
     </div>
 </div>
-<!-- Đã xác thực-->
-<div sec:authorize="isAuthenticated()">
-    <h2> Bạn đã đăng nhập </h2>
-    <h2> Xin chào bạn:
-        <span style="color: #1e7e34" sec:authentication="principal.username"></span>
-    </h2>
+<!--&lt;!&ndash; Đã xác thực&ndash;&gt;-->
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--    <h2> Bạn đã đăng nhập </h2>-->
+<!--    <h2> Xin chào bạn:-->
+<!--        <span style="color: #1e7e34" sec:authentication="principal.username"></span>-->
+<!--    </h2>-->
 
-    <!-- Tài nguyên của role Admin   -->
-    <div sec:authorize="hasRole('ADMIN')" style="color: red">
-        <span>EDIT</span>
-        <span>CREATE</span>
-        <span>DELETE</span>
-    </div>
+<!--    &lt;!&ndash; Tài nguyên của role Admin   &ndash;&gt;-->
+<!--    <div sec:authorize="hasRole('ADMIN')" style="color: red">-->
+<!--        <span>EDIT</span>-->
+<!--        <span>CREATE</span>-->
+<!--        <span>DELETE</span>-->
+<!--    </div>-->
 
-    <!-- Tài nguyên của role User   -->
-    <div sec:authorize="hasRole('USER')" style="color: green">
-        <span> VIEW </span>
-    </div>
-</div>
+<!--    &lt;!&ndash; Tài nguyên của role User   &ndash;&gt;-->
+<!--    <div sec:authorize="hasRole('USER')" style="color: green">-->
+<!--        <span> VIEW </span>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <script src="bootstrap-5.0.2-dist/js/bootstrap.js"></script>

@@ -1,46 +1,27 @@
-package com.furama_casestudy_module_4.model.contract;
+package com.furama_casestudy_module_4.dto.customer;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.furama_casestudy_module_4.model.customer.Customer;
 import com.furama_casestudy_module_4.model.employee.Employee;
 import com.furama_casestudy_module_4.model.facility.Facility;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
-import java.util.Set;
-
-@Entity
-public class Contract {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ContractDto implements Validator {
     private Integer id;
     private String startDate;
     private String endDate;
     private Double deposit;
     private Integer status;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "facility_id", referencedColumnName = "id")
     private Facility facility;
 
-    @OneToMany(mappedBy = "contract")
-    private Set<ContractDetail> contractDetails;
-
-    public Contract() {
+    public ContractDto() {
     }
 
-    public Contract(Integer id, String startDate,
-                    String endDate, Double deposit,
-                    Integer status, Employee employee,
-                    Customer customer, Facility facility,
-                    Set<ContractDetail> contractDetails) {
+    public ContractDto(Integer id, String startDate, String endDate,
+                       Double deposit, Integer status, Employee employee,
+                       Customer customer, Facility facility) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -49,7 +30,6 @@ public class Contract {
         this.employee = employee;
         this.customer = customer;
         this.facility = facility;
-        this.contractDetails = contractDetails;
     }
 
     public Integer getId() {
@@ -116,12 +96,16 @@ public class Contract {
         this.facility = facility;
     }
 
-    public Set<ContractDetail> getContractDetails() {
-        return contractDetails;
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setContractDetails(Set<ContractDetail> contractDetails) {
-        this.contractDetails = contractDetails;
-    }
+    @Override
+    public void validate(Object target, Errors errors) {
+        ContractDto contractDto = (ContractDto) target;
 
+
+
+    }
 }

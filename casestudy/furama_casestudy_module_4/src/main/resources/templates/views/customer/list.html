@@ -7,112 +7,228 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<a style="text-decoration: none" th:href="@{/customer/show-form-create}">Thêm mới khách hàng</a>
 
-<!--<form th:action="@{/customer}" method="get">-->
-<!--    <input th:type="text" name="name">-->
-<!--    <input th:type="submit" name="action" value="findByName">-->
-<!--</form>-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 header">
+            <span>
+                <a class="navbar-brand" href="#">
+                    <img src="/images/logo_furama.png" alt="" width="122" height="116">
+                </a>
+            </span>
+        </div>
+        <div class="col-5 header text-center fs-1">Customer</div>
+        <div class="col-4 header position-relative"><span class="position-absolute top-50 start-50 translate-middle">Ngô Đình Nhật Tuấn</span>
+        </div>
+    </div>
 
-<!--<form th:action="@{/customer}" method="get">-->
-<!--    <input th:type="text" name="name">-->
-<!--    <input th:type="text" name="email">-->
-<!--    <input th:type="submit" name="action" value="findByName">-->
-<!--</form>-->
+    <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light   ">
+            <div class="col-4"></div>
+            <div class="col-5">
+                <div class="container-fluid d-flex justify-content-center ">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end "><a class="text-decoration-none"
+                                                                href="http://localhost:8080">Home</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
 
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end"><a class="text-decoration-none"
+                                                               href="http://localhost:8080/employee">Employee</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
 
-<form th:action="@{/customer}" method="get">
-    <input th:type="text" name="name">
-    <input th:type="text" name="email">
-    <select th:name="customerType">
-        <option value="" selected>
-            Choose something
-        </option>
-        <option
-                th:each="item : ${customerTypes}"
-                th:value="${item.name}" th:text="${item.name}">
-        </option>
-    </select>
-    <input th:type="submit" name="action" value="findByName">
-</form>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end"><a class="text-decoration-none"
+                                                               href="http://localhost:8080/customer">Customer</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
 
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end"><a class="text-decoration-none"
+                                                               href="http://localhost:8080/facility">Facility</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
 
-<h1>customers</h1>
-<table class="table table-bordered ">
-    <thead style="background-color: #3dd5f3;color: black">
-    <tr>
-        <th>stt</th>
-        <th>name</th>
-        <th>CustomerType</th>
-        <th>dateOfBirth</th>
-        <th>gender</th>
-        <th>idCard</th>
-        <th>phoneNumber</th>
-        <th>email</th>
-        <th>address</th>
-        <th>status</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="customer,index : ${customers}">
-        <td th:text="${index.count+5*customers.number}"></td>
-        <td th:text="${customer.name}"></td>
-        <td th:text="${customer.customerType.getName()}"></td>
-        <td th:text="${customer.dateOfBirth}"></td>
-        <td th:text="${customer.gender}"></td>
-        <td th:text="${customer.idCard}"></td>
-        <td th:text="${customer.phoneNumber}"></td>
-        <td th:text="${customer.email}"></td>
-        <td th:text="${customer.address}"></td>
-        <td th:text="${customer.status}"></td>
-        <td>
-            <a th:href="@{/customer/show-form-edit/__${customer.id}__ }">Edit</a>
-        </td>
-        <td>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                    th:data-bs-target="'#staticBackdrop' + ${customer.id}"> Delete
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" th:id="staticBackdrop + ${customer.id}" data-bs-backdrop="static"
-                 data-bs-keyboard="false"
-                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header"><h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body"> Bạn có muốn xóa khách hàng
-                            <span class="text-info" th:text="${customer.name}"></span>
-                        </div>
-                        <div class="modal-footer"><a th:href="@{/customer/delete(id=${customer.id})}"
-                                                     class="btn btn-outline-success">Xóa</a>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        </div>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end"><a class="text-decoration-none"
+                                                               href="http://localhost:8080/contract">Contract</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+            <div class="col-3">
+                <form action="/customer" class="d-flex">
+                    <input class="form-control me-2" type="text" name="name" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit" name="action" value="findByName">Search
+                    </button>
+                </form>
+
+            </div>
+
+        </nav>
+    </div>
+
+    <a style="text-decoration: none" th:href="@{/customer/show-form-create}">Thêm mới khách hàng</a>
+
+    <!--<form th:action="@{/customer}" method="get">-->
+    <!--    <input th:type="text" name="name">-->
+    <!--    <input th:type="submit" name="action" value="findByName">-->
+    <!--</form>-->
+
+    <!--<form th:action="@{/customer}" method="get">-->
+    <!--    <input th:type="text" name="name">-->
+    <!--    <input th:type="text" name="email">-->
+    <!--    <input th:type="submit" name="action" value="findByName">-->
+    <!--</form>-->
 
 
+    <form th:action="@{/customer}" method="get">
+        <input th:type="text" name="name">
+        <input th:type="text" name="email">
+        <select th:name="customerType">
+            <option value="" selected>
+                Choose something
+            </option>
+            <option
+                    th:each="item : ${customerTypes}"
+                    th:value="${item.name}" th:text="${item.name}">
+            </option>
+        </select>
+        <input th:type="submit" name="action" value="findByName">
+    </form>
 
 
-<div>
-    <a th:href="@{'/customer'(page=${customers.number - 1},name=${name},email=${email})}"
-       th:if="${customers.hasPrevious()}">Previous</a>
+    <h1>customers</h1>
+    <table class="table table-bordered ">
+        <thead style="background-color: #3dd5f3;color: black">
+        <tr>
+            <th>stt</th>
+            <th>name</th>
+            <th>CustomerType</th>
+            <th>dateOfBirth</th>
+            <th>gender</th>
+            <th>idCard</th>
+            <th>phoneNumber</th>
+            <th>email</th>
+            <th>address</th>
+            <th>status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer,index : ${customers}">
+            <td th:text="${index.count+5*customers.number}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.customerType.getName()}"></td>
+            <td th:text="${customer.dateOfBirth}"></td>
+            <td th:text="${customer.gender}"></td>
+            <td th:text="${customer.idCard}"></td>
+            <td th:text="${customer.phoneNumber}"></td>
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.address}"></td>
+            <td th:text="${customer.status}"></td>
+            <td>
+                <a th:href="@{/customer/show-form-edit/__${customer.id}__ }">Edit</a>
+            </td>
+            <td>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                        th:data-bs-target="'#staticBackdrop' + ${customer.id}"> Delete
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" th:id="staticBackdrop + ${customer.id}" data-bs-backdrop="static"
+                     data-bs-keyboard="false"
+                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header"><h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body"> Bạn có muốn xóa khách hàng
+                                <span class="text-info" th:text="${customer.name}"></span>
+                            </div>
+                            <div class="modal-footer"><a th:href="@{/customer/delete(id=${customer.id})}"
+                                                         class="btn btn-outline-success">Xóa</a>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-    <span th:text="${customers.number + 1}"></span>
-    <span th:text="${customers.totalPages}"></span>
 
-    <a th:href="@{'/customer'(page = ${customers.number + 1},name=${name},email=${email})}"
-       th:if="${customers.hasNext()}">Next</a>
+    <div>
+        <a th:href="@{'/customer'(page=${customers.number - 1},name=${name},email=${email})}"
+           th:if="${customers.hasPrevious()}">Previous</a>
+
+        <span th:text="${customers.number + 1}"></span>
+        <span th:text="${customers.totalPages}"></span>
+
+        <a th:href="@{'/customer'(page = ${customers.number + 1},name=${name},email=${email})}"
+           th:if="${customers.hasNext()}">Next</a>
+    </div>
 </div>
-
 <!--<div>-->
 <!--    <a th:href="@{'/customer'(page=${customers.number - 1},name=${name})}"-->
 <!--       th:if="${customers.hasPrevious()}">Previous</a>-->
@@ -139,5 +255,7 @@
         crossorigin="anonymous">
 </script>
 <!--<script src="../../../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>-->
+
+
 </body>
 </html>

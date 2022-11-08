@@ -57,10 +57,13 @@ public class FacilityController {
     public ModelAndView saveFacility(@Validated @ModelAttribute FacilityDto facilityDto,
                                      BindingResult bindingResult,
                                      @PageableDefault(value = 2) Pageable pageable
+
     ) {
         new FacilityDto().validate(facilityDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             ModelAndView modelAndView = new ModelAndView("views/facility/create");
+            modelAndView.addObject("facilityTypes", facilityTypeService.findAll());
+            modelAndView.addObject("rentTypes", rentTypeService.findAll());
             return modelAndView;
         } else {
             Facility facility = new Facility();
@@ -70,6 +73,8 @@ public class FacilityController {
             ModelAndView modelAndView = new ModelAndView("redirect:/facility");
             modelAndView.addObject("message", "Add new successfully!");
             modelAndView.addObject("facilitys", facilityService.findAll(pageable));
+            modelAndView.addObject("facilityTypes", facilityTypeService.findAll());
+            modelAndView.addObject("rentTypes", rentTypeService.findAll());
             return modelAndView;
         }
     }

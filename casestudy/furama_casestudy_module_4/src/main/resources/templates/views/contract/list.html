@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<a style="text-decoration: none" th:href="@{/contract/show-form-create}">Thêm mới khách hàng</a>
+
+<form th:action="@{/contract}" method="get">
+
+    <input th:type="text" name="start">
+    <input th:type="text" name="end">
+
+    <input th:type="submit" name="action" value="findByName">
+</form>
+
+
+<h1>contracts</h1>
+<table class="table table-bordered ">
+    <thead style="background-color: #3dd5f3;color: black">
+    <tr>
+        <th>STT</th>
+        <th>startDate</th>
+        <th>endDate</th>
+        <th>deposit</th>
+        <th>employee</th>
+        <th>customer</th>
+        <th>facility</th>
+
+<!--        <th>Edit</th>-->
+<!--        <th>Delete</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contract,index : ${contracts}">
+        <td th:text="${index.count+5*contracts.number}"></td>
+        <td th:text="${contract.startDate}"></td>
+        <td th:text="${contract.endDate}"></td>
+        <td th:text="${contract.deposit}"></td>
+        <td th:text="${contract.employee.getName()}"></td>
+        <td th:text="${contract.customer.getName()}"></td>
+        <td th:text="${contract.facility.getName()}"></td>
+
+<!--        <td>-->
+<!--            <a th:href="@{/contract/show-form-edit/__${contract.id}__ }">Edit</a>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"-->
+<!--                    th:data-bs-target="'#staticBackdrop' + ${contract.id}"> Delete-->
+<!--            </button>-->
+<!--            &lt;!&ndash; Modal &ndash;&gt;-->
+<!--            <div class="modal fade" th:id="staticBackdrop + ${contract.id}" data-bs-backdrop="static"-->
+<!--                 data-bs-keyboard="false"-->
+<!--                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--                <div class="modal-dialog">-->
+<!--                    <div class="modal-content">-->
+<!--                        <div class="modal-header"><h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>-->
+<!--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                        </div>-->
+<!--                        <div class="modal-body"> Bạn có muốn xóa khách hàng-->
+<!--                            <span class="text-info" th:text="${contract.name}"></span>-->
+<!--                        </div>-->
+<!--                        <div class="modal-footer"><a th:href="@{/contract/delete(id=${contract.id})}"-->
+<!--                                                     class="btn btn-outline-success">Xóa</a>-->
+<!--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </td>-->
+<!--    </tr>-->
+    </tbody>
+</table>
+
+
+
+
+<div>
+    <a th:href="@{'/contract'(page=${contracts.number - 1},start=${start},end=${end})}"
+       th:if="${contracts.hasPrevious()}">Previous</a>
+
+    <span th:text="${contracts.number + 1}"></span>
+    <span th:text="${contracts.totalPages}"></span>
+
+    <a th:href="@{'/contract'(page = ${contracts.number + 1},start=${start},end=${end})}"
+       th:if="${contracts.hasNext()}">Next</a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+</script>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 public class FacilityDto implements Validator {
     private Integer id;
-    @NotBlank(message = " Tên Customer không được để trống")
+    @NotBlank(message = " Tên Facility không được để trống")
     private String name;
     private Integer area;
     private Double cost;
