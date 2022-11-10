@@ -1,6 +1,5 @@
 package com.furama_casestudy_module_4.model.contract;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.furama_casestudy_module_4.model.customer.Customer;
 import com.furama_casestudy_module_4.model.employee.Employee;
 import com.furama_casestudy_module_4.model.facility.Facility;

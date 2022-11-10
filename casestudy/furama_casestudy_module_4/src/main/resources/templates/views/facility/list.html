@@ -7,106 +7,222 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<a style="text-decoration: none" th:href="@{/facility/show-form-create}">Thêm mới khách hàng</a>
 
-<form th:action="@{/facility}" method="get">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 header">
+            <span>
+                <a class="navbar-brand" href="#">
+                    <img src="/images/logo_furama.png" alt="" width="122" height="116">
+                </a>
+            </span>
+        </div>
+        <div class="col-5 header text-center fs-1">Facility</div>
+        <div class="col-4 header position-relative"><span class="position-absolute top-50 start-50 translate-middle">Ngô Đình Nhật Tuấn</span>
+        </div>
+    </div>
 
-    <input th:type="text" name="name">
-    <select th:name="facilityType">
-        <option value="" selected>
-            Choose something
-        </option>
-        <option th:each="item : ${facilityTypes}"
-                th:value="${item.name}" th:text="${item.name}">
-        </option>
-    </select>
-    <input th:type="submit" name="action" value="findByName">
-</form>
+    <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light   ">
+            <div class="col-4"></div>
+            <div class="col-5">
+                <div class="container-fluid d-flex justify-content-center ">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end "><a class="text-decoration-none"
+                                                                href="http://localhost:8080">Home</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
 
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end"><a class="text-decoration-none"
+                                                               href="http://localhost:8080/employee">Employee</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
 
-<h1>facilitys</h1>
-<table class="table table-bordered ">
-    <thead style="background-color: #3dd5f3;color: black">
-    <tr>
-        <th>STT</th>
-        <th>name</th>
-        <th>area</th>
-        <th>cost</th>
-        <th>maxPeople</th>
-        <th>standardRoom</th>
-        <th>descriptionOtherConvenience</th>
-        <th>poolArea</th>
-        <th>numberOfFloors</th>
-        <th>facilityFree</th>
-        <th>status</th>
-        <th>rentTypeId</th>
-        <th>facility_type_id</th>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end"><a class="text-decoration-none"
+                                                               href="http://localhost:8080/customer">Customer</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
 
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="facility,index : ${facilitys}">
-        <td th:text="${index.count+5*facilitys.number}"></td>
-        <td th:text="${facility.name}"></td>
-        <td th:text="${facility.area}"></td>
-        <td th:text="${facility.cost}"></td>
-        <td th:text="${facility.maxPeople}"></td>
-        <td th:text="${facility.standardRoom}"></td>
-        <td th:text="${facility.descriptionOtherConvenience}"></td>
-        <td th:text="${facility.poolArea}"></td>
-        <td th:text="${facility.numberOfFloors}"></td>
-        <td th:text="${facility.facilityFree}"></td>
-        <td th:text="${facility.status}"></td>
-        <td th:text="${facility.rentType.getName()}"></td>
-        <td th:text="${facility.facilityType.getName()}"></td>
-        <td>
-            <a th:href="@{/facility/show-form-edit/__${facility.id}__ }">Edit</a>
-        </td>
-        <td>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                    th:data-bs-target="'#staticBackdrop' + ${facility.id}"> Delete
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" th:id="staticBackdrop + ${facility.id}" data-bs-backdrop="static"
-                 data-bs-keyboard="false"
-                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header"><h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body"> Bạn có muốn xóa khách hàng
-                            <span class="text-info" th:text="${facility.name}"></span>
-                        </div>
-                        <div class="modal-footer"><a th:href="@{/facility/delete(id=${facility.id})}"
-                                                     class="btn btn-outline-success">Xóa</a>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        </div>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end"><a class="text-decoration-none"
+                                                               href="http://localhost:8080/facility">Facility</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle float-end" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="float-end"><a class="text-decoration-none"
+                                                               href="http://localhost:8080/contract">Contract</a></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+            <div class="col-3">
+                <form action="/customer" class="d-flex">
+                    <input class="form-control me-2" type="text" name="name" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit" name="action" value="findByName">Search
+                    </button>
+                </form>
+
+            </div>
+
+        </nav>
+    </div>
+
+    <a style="text-decoration: none" th:href="@{/facility/show-form-create}">Thêm mới khách hàng</a>
+
+    <form th:action="@{/facility}" method="get">
+
+        <input th:type="text" name="name">
+        <select th:name="facilityType">
+            <option value="" selected>
+                Choose something
+            </option>
+            <option th:each="item : ${facilityTypes}"
+                    th:value="${item.name}" th:text="${item.name}">
+            </option>
+        </select>
+        <input th:type="submit" name="action" value="findByName">
+    </form>
 
 
+    <h1>facilitys</h1>
+    <table class="table table-bordered ">
+        <thead style="background-color: #3dd5f3;color: black">
+        <tr>
+            <th>STT</th>
+            <th>name</th>
+            <th>area</th>
+            <th>cost</th>
+            <th>maxPeople</th>
+            <th>standardRoom</th>
+            <th>descriptionOtherConvenience</th>
+            <th>poolArea</th>
+            <th>numberOfFloors</th>
+            <th>facilityFree</th>
+            <th>status</th>
+            <th>rentTypeId</th>
+            <th>facility_type_id</th>
+
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="facility,index : ${facilitys}">
+            <td th:text="${index.count+5*facilitys.number}"></td>
+            <td th:text="${facility.name}"></td>
+            <td th:text="${facility.area}"></td>
+            <td th:text="${facility.cost}"></td>
+            <td th:text="${facility.maxPeople}"></td>
+            <td th:text="${facility.standardRoom}"></td>
+            <td th:text="${facility.descriptionOtherConvenience}"></td>
+            <td th:text="${facility.poolArea}"></td>
+            <td th:text="${facility.numberOfFloors}"></td>
+            <td th:text="${facility.facilityFree}"></td>
+            <td th:text="${facility.status}"></td>
+            <td th:text="${facility.rentType.getName()}"></td>
+            <td th:text="${facility.facilityType.getName()}"></td>
+            <td>
+                <a th:href="@{/facility/show-form-edit/__${facility.id}__ }">Edit</a>
+            </td>
+            <td>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                        th:data-bs-target="'#staticBackdrop' + ${facility.id}"> Delete
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" th:id="staticBackdrop + ${facility.id}" data-bs-backdrop="static"
+                     data-bs-keyboard="false"
+                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header"><h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body"> Bạn có muốn xóa dịch vụ
+                                <span class="text-info" th:text="${facility.name}"></span>
+                            </div>
+                            <div class="modal-footer"><a th:href="@{/facility/delete(id=${facility.id})}"
+                                                         class="btn btn-outline-success">Xóa</a>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 
-<div>
-    <a th:href="@{'/facility'(page=${facilitys.number - 1},name=${name})}"
-       th:if="${facilitys.hasPrevious()}">Previous</a>
+    <div>
+        <a th:href="@{'/facility'(page=${facilitys.number - 1},name=${name})}"
+           th:if="${facilitys.hasPrevious()}">Previous</a>
 
-    <span th:text="${facilitys.number + 1}"></span>
-    <span th:text="${facilitys.totalPages}"></span>
+        <span th:text="${facilitys.number + 1}"></span>
+        <span th:text="${facilitys.totalPages}"></span>
 
-    <a th:href="@{'/facility'(page = ${facilitys.number + 1},name=${name})}"
-       th:if="${facilitys.hasNext()}">Next</a>
+        <a th:href="@{'/facility'(page = ${facilitys.number + 1},name=${name})}"
+           th:if="${facilitys.hasNext()}">Next</a>
+    </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

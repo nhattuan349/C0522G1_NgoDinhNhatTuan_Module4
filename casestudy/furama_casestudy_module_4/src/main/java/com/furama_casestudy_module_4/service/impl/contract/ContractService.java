@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class ContractService implements IContractService {
@@ -17,7 +18,7 @@ public class ContractService implements IContractService {
     private IContractRepository contractRepository;
 
     @Override
-    public Iterable<Contract> findAll() {
+    public List<Contract> findAll() {
         return contractRepository.findAll();
     }
 

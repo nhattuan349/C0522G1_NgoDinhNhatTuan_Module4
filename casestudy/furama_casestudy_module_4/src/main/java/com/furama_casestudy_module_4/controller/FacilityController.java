@@ -1,6 +1,6 @@
 package com.furama_casestudy_module_4.controller;
 
-import com.furama_casestudy_module_4.dto.customer.FacilityDto;
+import com.furama_casestudy_module_4.dto.FacilityDto;
 import com.furama_casestudy_module_4.model.facility.Facility;
 import com.furama_casestudy_module_4.service.facility.IFacilityService;
 import com.furama_casestudy_module_4.service.facility.IFacilityTypeService;
