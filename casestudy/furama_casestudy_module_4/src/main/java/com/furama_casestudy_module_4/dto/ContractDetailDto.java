@@ -72,6 +72,6 @@ public class ContractDetailDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        ContractDto contractDto = (ContractDto) target;
+        ContractDetailDto contractDto = (ContractDetailDto) target;
     }
 }

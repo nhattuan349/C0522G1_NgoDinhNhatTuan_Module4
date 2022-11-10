@@ -1,5 +1,6 @@
 package com.furama_casestudy_module_4.service.contract;
 
+import com.furama_casestudy_module_4.dto.CustomerHavingBooking;
 import com.furama_casestudy_module_4.model.contract.Contract;
 import com.furama_casestudy_module_4.model.customer.Customer;
 import com.furama_casestudy_module_4.model.facility.Facility;
@@ -23,5 +24,7 @@ public interface IContractService  {
     List<Contract> findAll();
 
     Optional<Contract> findById(int id);
+
+//    Page<CustomerHavingBooking> findByNameInterface(Pageable pageable, String start, String end);
 
 }

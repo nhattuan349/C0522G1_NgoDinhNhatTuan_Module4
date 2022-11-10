@@ -35,6 +35,7 @@ public class RestBlogController {
         return new ResponseEntity<>(blogPage.getContent(), HttpStatus.OK);
     }
 
+
 //    @GetMapping
 //    public ResponseEntity<List<Blog>> getStudentList() {
 //        List<Blog> studentList = blogService.findAll();

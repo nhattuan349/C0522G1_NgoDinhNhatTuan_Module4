@@ -162,7 +162,7 @@
             <td th:text="${contract.customer.getName()}"></td>
             <td th:text="${contract.facility.getName()}"></td>
             <td th:text="${contract.total}"></td>
-            <td >
+            <td>
                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                         th:data-bs-target="'#staticBackdrop' + ${contract.id}">
                     <img width="25 25" src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="">
@@ -170,11 +170,11 @@
 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                        th:data-bs-target="'#staticBackdrop' + ${contract.id}">
+                        th:data-bs-target="'#showList' + ${contract.id}">
                     Danh sách dịch vụ đi kèm
                 </button>
 
-<!--                Modal-->
+                <!-- Modal-->
                 <div class="modal fade" th:id="staticBackdrop + ${contract.id}" data-bs-backdrop="static"
                      data-bs-keyboard="false"
                      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -187,107 +187,84 @@
                             </div>
                             <div class="modal-body">
 
-<!--                                <form th:action="@{/facility/create}" th:object="${facilityDto}" method="post">-->
+                                <form th:action="@{/contract-detail/create}" th:object="${contractDetailDto}"
+                                      method="post">
 
-<!--                                    <div class="mb-3">-->
-<!--                                        <label class="form-label" style="color: #4f2216" >Name:</label>-->
-<!--                                        <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{name}"/>-->
-<!--                                        <div style="color: red"-->
-<!--                                             th:if="${#fields.hasErrors('name')}"-->
-<!--                                             th:errors="*{name}"> Name Error-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="mb-3">
+                                        <label style="color: #4f2216">quanlity:</label>
+                                        <input class="form-control" aria-describedby="emailHelp" type="number"
+                                               th:field="*{quanlity}"/>
+                                    </div>
 
-<!--                                    <div class="mb-3">-->
-<!--                                        <label  style="color: #4f2216" >Area:</label>-->
-<!--                                        <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{area}"/>-->
-<!--                                    </div>-->
+                                    <div class="mb-3">
+                                        <label style="color: #4f2216">attachFacility:</label>
+                                        <select th:field="*{attachFacility}">
+                                            <option th:each="item : ${attachFacilities}"
+                                                    th:value="${item.id}" th:text="${item.name}">
+                                            </option>
+                                        </select>
+                                    </div>
 
-<!--                                    <div class="mb-3">-->
-<!--                                        <label style="color: #4f2216" >Cost:</label>-->
-<!--                                        <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{cost}"/>-->
-<!--                                    </div>-->
+                                    <div>
+                                        <input style="color: #4f2216" type="submit" value="Create facility">
+                                    </div>
 
-<!--                                    <div class="mb-3">-->
-<!--                                        <label style="color: #4f2216" >MaxPeople:</label>-->
-<!--                                        <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{maxPeople}"/>-->
-<!--                                    </div>-->
+                                </form>
 
-<!--                                    <div class="mb-3">-->
-<!--                                        <label style="color: #4f2216" >RentType:</label>-->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<!--                                        <select class="form-control" aria-describedby="emailHelp" th:field="*{rentType}" onchange="onchangeFacility(this.value)">-->
-<!--                                            <option th:each="item : ${rentTypes}"-->
-<!--                                                    th:value="${item.id}" th:text="${item.name}">-->
-<!--                                            </option>-->
-<!--                                        </select>-->
+                <!-- Modal-->
+                <div class="modal fade" th:id="showList + ${contract.id}" data-bs-backdrop="static"
+                     data-bs-keyboard="false"
+                     tabindex="-1" aria-labelledby="staticShowListLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticShowListLabel">Danh sách dịch vụ đi kèm</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
 
-<!--                                    </div>-->
-
-<!--                                    <div class="mb-3">-->
-<!--                                        <label style="color: #4f2216" >Facility type:</label>-->
-
-<!--                                        <select class="form-control" aria-describedby="emailHelp" th:field="*{facilityType}">-->
-<!--                                            <option th:each="item : ${facilityTypes}"-->
-<!--                                                    th:value="${item.id}" th:text="${item.name}">-->
-<!--                                            </option>-->
-<!--                                        </select>-->
-
-<!--                                    </div>-->
-<!--                                    <div id="standardRoom" class="mb-3">-->
-<!--                                        <label style="color: #4f2216" >StandardRoom:</label>-->
-<!--                                        <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{standardRoom}"/>-->
-<!--                                    </div>-->
-
-<!--                                    <div id="description" class="mb-3">-->
-<!--                                        <label  style="color: #4f2216" >Description Other Convenience:</label>-->
-<!--                                        <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{descriptionOtherConvenience}"/>-->
-<!--                                    </div>-->
-
-<!--                                    <div id="poolArea" class="mb-3">-->
-<!--                                        <label  style="color: #4f2216" >PoolArea:</label>-->
-<!--                                        <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{poolArea}"/>-->
-<!--                                    </div>-->
-
-<!--                                    <div id="numberFloor" class="mb-3">-->
-<!--                                        <label  style="color: #4f2216" >NumberOfFloors:</label>-->
-<!--                                        <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{numberOfFloors}"/>-->
-<!--                                    </div>-->
-
-<!--                                    <div id="facilityFree" class="mb-3">-->
-<!--                                        <label  style="color: #4f2216" >FacilityFree:</label>-->
-<!--                                        <input class="form-control" aria-describedby="emailHelp" type="text" th:field="*{facilityFree}"/>-->
-<!--                                    </div>-->
+                                <table class="table table-bordered ">
+                                    <thead style="background-color: #3dd5f3;color: black">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>startDate</th>
+                                        <th>endDate</th>
+                                        <th>deposit</th>
+                                        <th>employee</th>
+                                        <th>customer</th>
+                                        <th>facility</th>
+                                        <th> Tổng Tiền</th>
 
 
-<!--                                    <div>-->
-<!--                                        <input  style="color: #4f2216" type="submit" value="Create facility">-->
-<!--                                    </div>-->
+                                        <!--        <th>Edit</th>-->
+                                        <!--        <th>Delete</th>-->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="contract,index : ${contracts}">
+                                        <td th:text="${index.count+5*contracts.number}"></td>
+                                        <td th:text="${contract.startDate}"></td>
+                                        <td th:text="${contract.endDate}"></td>
+                                        <td th:text="${contract.deposit}"></td>
+                                        <td th:text="${contract.employee.getName()}"></td>
+                                        <td th:text="${contract.customer.getName()}"></td>
+                                        <td th:text="${contract.facility.getName()}"></td>
+                                        <td th:text="${contract.total}"></td>
 
-<!--                                </form>-->
 
-<!--                                <table class="table table-hover">-->
-<!--                                    <tr>-->
-<!--                                        <th>Stt</th>-->
-<!--                                        <th>Name</th>-->
-<!--                                        <th>Gía</th>-->
-<!--                                        <th>Đơn vị tính</th>-->
-<!--                                        <th>Trạng Thái</th>-->
-<!--                                        <th>Số Lượng</th>-->
-<!--                                    </tr>-->
-<!--                                    <tr th:each="contractDetail:${contractDetails}">-->
-<!--                                        <th:block th:each="attachFacility,rowStart:${attachFacilities}">-->
-<!--                                            <th:block-->
-<!--                                                    th:if="${contract.id==contractDetail.contract.getId()&&contractDetail.attachFacility.getId()==attachFacility.id}">-->
-<!--                                                <td th:text="${rowStart.count}"></td>-->
-<!--                                                <td th:text="${attachFacility.name}"></td>-->
-<!--                                                <td th:text="${attachFacility.cost}"></td>-->
-<!--                                                <td th:text="${attachFacility.unit}"></td>-->
-<!--                                                <td th:text="${contractDetail.quanlity}"></td>-->
-<!--                                            </th:block>-->
-<!--                                        </th:block>-->
-<!--                                    </tr>-->
-<!--                                </table>-->
+                                    </tr>
+                                    </tbody>
+                                </table>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -297,34 +274,6 @@
                 </div>
 
             </td>
-            <!--        <td>-->
-            <!--            <a th:href="@{/contract/show-form-edit/__${contract.id}__ }">Edit</a>-->
-            <!--        </td>-->
-            <!--        <td>-->
-            <!--            &lt;!&ndash; Button trigger modal &ndash;&gt;-->
-            <!--            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"-->
-            <!--                    th:data-bs-target="'#staticBackdrop' + ${contract.id}"> Delete-->
-            <!--            </button>-->
-            <!--            &lt;!&ndash; Modal &ndash;&gt;-->
-            <!--            <div class="modal fade" th:id="staticBackdrop + ${contract.id}" data-bs-backdrop="static"-->
-            <!--                 data-bs-keyboard="false"-->
-            <!--                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
-            <!--                <div class="modal-dialog">-->
-            <!--                    <div class="modal-content">-->
-            <!--                        <div class="modal-header"><h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>-->
-            <!--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-            <!--                        </div>-->
-            <!--                        <div class="modal-body"> Bạn có muốn xóa khách hàng-->
-            <!--                            <span class="text-info" th:text="${contract.name}"></span>-->
-            <!--                        </div>-->
-            <!--                        <div class="modal-footer"><a th:href="@{/contract/delete(id=${contract.id})}"-->
-            <!--                                                     class="btn btn-outline-success">Xóa</a>-->
-            <!--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--        </td>-->
 
         </tr>
         </tbody>

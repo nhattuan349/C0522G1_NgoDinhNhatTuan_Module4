@@ -74,11 +74,10 @@ public class CustomerController {
     }
 
 
-
-
     @GetMapping("/show-form-create")
     public ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("views/customer/create");
+        modelAndView.addObject("customerTypes", customerTypeService.findAll());
         modelAndView.addObject("customerTypes", customerTypeService.findAll());
         modelAndView.addObject("customerDto", new CustomerDto());
         return modelAndView;
@@ -92,6 +91,8 @@ public class CustomerController {
         new CustomerDto().validate(customerDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             ModelAndView modelAndView = new ModelAndView("views/customer/create");
+            modelAndView.addObject("customers", customerService.findAll(pageable));
+            modelAndView.addObject("customerTypes", customerTypeService.findAll());
             return modelAndView;
         } else {
             Customer customer = new Customer();
@@ -101,6 +102,7 @@ public class CustomerController {
             ModelAndView modelAndView = new ModelAndView("redirect:/customer");
             modelAndView.addObject("message", "Add new successfully!");
             modelAndView.addObject("customers", customerService.findAll(pageable));
+            modelAndView.addObject("customerTypes", customerTypeService.findAll());
             return modelAndView;
         }
     }

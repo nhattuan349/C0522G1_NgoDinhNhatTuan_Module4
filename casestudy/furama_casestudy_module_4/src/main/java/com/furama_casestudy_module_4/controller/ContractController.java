@@ -1,5 +1,6 @@
 package com.furama_casestudy_module_4.controller;
 
+import com.furama_casestudy_module_4.dto.ContractDetailDto;
 import com.furama_casestudy_module_4.dto.ContractDto;
 import com.furama_casestudy_module_4.model.contract.AttachFacility;
 import com.furama_casestudy_module_4.model.contract.Contract;
@@ -72,8 +73,27 @@ public class ContractController {
         modelAndView.addObject("facilities", facilityService.findAll());
         modelAndView.addObject("attachFacilities", attachFacilityService.findAll());
         modelAndView.addObject("contractDetails", contractDetailService.findAll());
+        modelAndView.addObject("contractDetailDto", new ContractDetailDto());
+
         return modelAndView;
     }
+
+//    @GetMapping("")
+//    public ModelAndView listContracts(@PageableDefault(value = 5) Pageable pageable,
+//                                      @RequestParam Optional<String> start,
+//                                      @RequestParam Optional<String> end) {
+//        ModelAndView modelAndView = new ModelAndView("views/contract/list");
+//        modelAndView.addObject("start", start.orElse(""));
+//        modelAndView.addObject("end", end.orElse(""));
+//        modelAndView.addObject("contracts", contractService.findByName(pageable, start.orElse(""), end.orElse("")));
+//        modelAndView.addObject("employees", employeeService.findAll());
+//        modelAndView.addObject("customers", customerService.findAll());
+//        modelAndView.addObject("facilities", facilityService.findAll());
+//        modelAndView.addObject("attachFacilities", attachFacilityService.findAll());
+//        modelAndView.addObject("contractDetails", contractDetailService.findAll());
+//        return modelAndView;
+//    }
+
 
     @GetMapping("/show-form-create")
     public ModelAndView showCreateForm() {
@@ -113,4 +133,8 @@ public class ContractController {
             return modelAndView;
         }
     }
+
+
+
+
 }

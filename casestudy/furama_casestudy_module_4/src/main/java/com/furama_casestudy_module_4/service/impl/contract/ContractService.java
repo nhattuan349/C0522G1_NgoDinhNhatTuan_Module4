@@ -1,5 +1,6 @@
 package com.furama_casestudy_module_4.service.impl.contract;
 
+import com.furama_casestudy_module_4.dto.CustomerHavingBooking;
 import com.furama_casestudy_module_4.model.contract.Contract;
 import com.furama_casestudy_module_4.model.facility.Facility;
 import com.furama_casestudy_module_4.repository.contract.IContractRepository;
@@ -27,6 +28,12 @@ public class ContractService implements IContractService {
         return contractRepository.findById(id);
     }
 
+//    @Override
+//    public Page<CustomerHavingBooking> findByNameInterface(Pageable pageable, String start, String end) {
+//        return contractRepository.findByContractStartAndEndDateContainingInterfacce(
+//                pageable, "%" + start + "%","%" + end + "%");
+//    }
+
     @Override
     public void save(Contract contract) {
         contractRepository.save(contract);
@@ -47,6 +54,12 @@ public class ContractService implements IContractService {
         return contractRepository.findByContractStartAndEndDateContaining(
                 pageable, "%" + start + "%","%" + end + "%");
     }
+//
+//    @Override
+//    public Page<Contract> findByName(Pageable pageable, String start, String end) {
+//        return contractRepository.findByContractStartAndEndDateContaining(
+//                pageable, "%" + start + "%","%" + end + "%");
+//    }
 
 
 
